@@ -1,0 +1,112 @@
+﻿@model Gcc.Models.Grupo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Grupo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descricao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descricao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.QuantidadeTotal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuantidadeTotal)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Visibilidade)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Visibilidade)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Celular)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Celular)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.CEP)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.CEP)
+        @Html.ValidationMessageFor(model => model.Endereco.CEP)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Estado)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Estado)
+        @Html.ValidationMessageFor(model => model.Endereco.Estado)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Cidade)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Cidade)
+        @Html.ValidationMessageFor(model => model.Endereco.Cidade)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Bairro)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Bairro)
+        @Html.ValidationMessageFor(model => model.Endereco.Bairro)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Rua)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Rua)
+        @Html.ValidationMessageFor(model => model.Endereco.Rua)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Numero)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Numero)
+        @Html.ValidationMessageFor(model => model.Endereco.Numero)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.GrupoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

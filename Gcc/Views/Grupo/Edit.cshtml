@@ -1,0 +1,133 @@
+﻿@model Gcc.Models.Grupo
+
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm())
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Editar grupo</h4>
+                </div>
+
+                @Html.AntiForgeryToken()
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.GrupoID)
+                        @Html.HiddenFor(model => model.EnderecoID)
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Nome)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Nome)
+                            @Html.ValidationMessageFor(model => model.Nome)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Descricao)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Descricao)
+                            @Html.ValidationMessageFor(model => model.Descricao)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Visibilidade)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Visibilidade)
+                            @Html.ValidationMessageFor(model => model.Visibilidade)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Email)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Telefone)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Telefone)
+                            @Html.ValidationMessageFor(model => model.Telefone)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Celular)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Celular)
+                            @Html.ValidationMessageFor(model => model.Celular)
+                        </div>
+
+                        @Html.HiddenFor(model => model.Endereco.EnderecoID)
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Endereco.CEP)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Endereco.CEP)
+                            @Html.ValidationMessageFor(model => model.Endereco.CEP)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Endereco.Estado)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Endereco.Estado)
+                            @Html.ValidationMessageFor(model => model.Endereco.Estado)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Endereco.Cidade)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Endereco.Cidade)
+                            @Html.ValidationMessageFor(model => model.Endereco.Cidade)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Endereco.Bairro)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Endereco.Bairro)
+                            @Html.ValidationMessageFor(model => model.Endereco.Bairro)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Endereco.Rua)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Endereco.Rua)
+                            @Html.ValidationMessageFor(model => model.Endereco.Rua)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Endereco.Numero)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Endereco.Numero)
+                            @Html.ValidationMessageFor(model => model.Endereco.Numero)
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

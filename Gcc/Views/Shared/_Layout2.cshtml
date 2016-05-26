@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/modal.js")
+    @Scripts.Render("~/Scripts/MeuJavaScript.js")
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/Site.css")
+</head>
+<body>
+    <<div class="container-fluid">
+        @RenderSection("featured", required: false)
+        @RenderBody()
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

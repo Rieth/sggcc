@@ -1,0 +1,13 @@
+﻿@model Gcc.Models.Produto
+
+<div class="card">
+    <img class="card-img-top" src="http://macbook.nl/wp-content/themes/macbook/images/png/iphone318x180.png" alt="Grupo Logo">
+    <div class="card-block">
+        <h4 class="card-title">@Model.Nome</h4>
+        <p class="card-text">@Model.Descricao</p>
+        <a href="~/Produto/Edit/@Model.ProdutoID" class="btn btn-primary">Visualizar</a>
+        <button type="submit" value="~/Produto/Edit/@Model.ProdutoID" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+        </button>
+    </div>
+</div>

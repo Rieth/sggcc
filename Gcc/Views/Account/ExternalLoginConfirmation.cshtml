@@ -1,0 +1,35 @@
+﻿@model Gcc.Models.RegisterExternalLoginModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Associate your @ViewBag.ProviderDisplayName account.</h2>
+</hgroup>
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Association Form</legend>
+        <p>
+            Você se autenticou com <strong>@ViewBag.ProviderDisplayName</strong>.
+            Por favor, preencha as outras informaçoes e clique em Registrar.
+        </p>
+        <ol>
+            <li class="name">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+        </ol>
+        @Html.HiddenFor(m => m.ExternalLoginData)
+        <input type="submit" value="Registrar" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

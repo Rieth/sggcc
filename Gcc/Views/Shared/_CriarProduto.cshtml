@@ -1,0 +1,54 @@
+﻿@model Gcc.Models.Produto
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginCollectionItem("Produtoes"))
+{
+    <div class="row top30">
+        <ul class="nav nav-tabs" class="tabs">
+            <li class="active"><a data-target="#tabProduto" data-toggle="tab">Produto</a></li>
+            <li><a data-target="#tabProdutoCaracteristicas" data-toggle="tab">Características</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tabProduto">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Nome)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Nome)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Descricao)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Descricao)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Link)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Link, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Link)
+                </div>
+            </div>
+            <div class="tab-pane" id="tabProdutoCaracteristicas">
+                <div class="Caracteristicas">
+                    @foreach (var caracteristica in Model.Caracteristicas)
+                    {
+                        <div class="row top30">
+                            @Html.Partial("_CriarCaracteristica", caracteristica)
+                        </div>
+                    }
+                </div>
+                <button type="button" class="add btn btn-primary" data-divname="Caracteristicas" data-url="/Caracteristica/AdicionarCaracteristica/">Adicionar Característica</button>
+            </div>
+        </div>
+    </div>
+}

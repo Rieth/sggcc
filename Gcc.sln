@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcc.Web", "Gcc\Gcc.Web.csproj", "{2EA67927-FCBD-40A4-AE00-CFA947E80A6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcc.Models", "Gcc.Model\Gcc.Models.csproj", "{B2DB9B1F-9AD2-4008-AA1B-AC16CB0F381D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EA67927-FCBD-40A4-AE00-CFA947E80A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA67927-FCBD-40A4-AE00-CFA947E80A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA67927-FCBD-40A4-AE00-CFA947E80A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA67927-FCBD-40A4-AE00-CFA947E80A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DB9B1F-9AD2-4008-AA1B-AC16CB0F381D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DB9B1F-9AD2-4008-AA1B-AC16CB0F381D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DB9B1F-9AD2-4008-AA1B-AC16CB0F381D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DB9B1F-9AD2-4008-AA1B-AC16CB0F381D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

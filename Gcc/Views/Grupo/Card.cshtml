@@ -1,0 +1,15 @@
+﻿@model Gcc.Models.Grupo
+
+<div class="card">
+    <img class="card-img-top" src="http://www-03.ibm.com/security/assets/img/cryptocards-318x180.jpg" alt="Grupo Logo">
+    <div class="card-block">
+        <h4 class="card-title">@Model.Nome</h4>
+        <p class="card-text">@Model.Descricao</p>
+        <div class="btn-group">
+            <button class="btn btn-primary openModal" data-path="/Grupo/Edit/@Model.GrupoID">Editar</button>
+            <button class="btn btn-primary openModal" data-path="/Grupo/Produtos/@Model.GrupoID">Produtos</button>
+            <button class="btn btn-primary openModal" data-path="/Cliente/@Model.GrupoID">Participantes</button>
+            <button class="btn btn-primary openModal" data-path="/Enquete/@Model.GrupoID">Enquetes</button>
+        </div>
+    </div>
+</div>
