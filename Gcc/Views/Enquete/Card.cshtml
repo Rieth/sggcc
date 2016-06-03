@@ -1,0 +1,85 @@
+﻿@model Gcc.Models.Enquete
+@{ var id = Guid.NewGuid().ToString(); }
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginCollectionItem("Enquetes"))
+{
+    @Html.HiddenFor(model => model.GrupoID)
+    @Html.HiddenFor(model => model.EnqueteID)
+
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="card">
+            <img class="card-img-top" src="https://www.accenture.com/t00010101T000000w320/gb-en/_acnmedia/Accenture/Conversion-Assets/DotCom/Images/Global/Digital_15/Accenture-PE-icon-1-320.png" alt="Grupo Logo">
+            <div class="card-block">
+                <h4 class="card-title">Enquete</h4>
+                @*<div class="row top30">*@
+
+                <button type="button" class="open-modal-next btn btn-primary">Informações</button>
+                <div class="my-modal modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Informações Gerais</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group-sm-3">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.Nome)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Nome)
+                                    </div>
+
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.Descricao)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Descricao)
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="open-modal-next btn btn-primary">Alternativas</button>
+                <div class="my-modal modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Informações Gerais</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="Alternativas">
+                                    @foreach (var alternativa in Model.Alternativas)
+                                    {
+                                        @Html.Partial("_CriarAlternativa.cshtml", alternativa)
+                                    }
+                                </div>
+                                <div class="row">
+                                    <button type="button" class="add btn btn-primary" data-divname="Alternativas" data-url="/_CriarAlternativa/">Adicionar Alternativa</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*</div>*@
+            </div>
+        </div>
+    </div>
+}

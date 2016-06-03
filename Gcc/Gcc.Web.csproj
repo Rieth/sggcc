@@ -345,15 +345,9 @@
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Grupo\Details.cshtml" />
-    <Content Include="Views\Grupo\Create.cshtml" />
-    <Content Include="Views\Grupo\Edit.cshtml" />
-    <Content Include="Views\Grupo\Delete.cshtml" />
+    <Content Include="Views\Grupo\CriarEditar.cshtml" />
     <Content Include="Views\Grupo\Card.cshtml" />
-    <Content Include="Views\Produto\Index.cshtml" />
     <Content Include="Views\Produto\Details.cshtml" />
-    <Content Include="Views\Produto\Create.cshtml" />
-    <Content Include="Views\Produto\Edit.cshtml" />
-    <Content Include="Views\Produto\Delete.cshtml" />
     <Content Include="Views\Produto\Card.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\EditarInformacoes.cshtml" />
@@ -361,13 +355,9 @@
     <Content Include="Views\Shared\_CriarCaracteristica.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <Content Include="Views\Shared\_CriarProduto.cshtml" />
-    <Content Include="Views\Enquete\Index.cshtml" />
     <Content Include="Views\Enquete\Details.cshtml" />
-    <Content Include="Views\Enquete\Create.cshtml" />
-    <Content Include="Views\Enquete\Edit.cshtml" />
-    <Content Include="Views\Enquete\Delete.cshtml" />
-    <Content Include="Views\Grupo\Produtos.cshtml" />
     <Content Include="Views\Shared\_CriarAlternativa.cshtml" />
+    <Content Include="Views\Enquete\Card.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

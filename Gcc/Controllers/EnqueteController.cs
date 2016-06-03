@@ -14,6 +14,12 @@ namespace Gcc.Web.Controllers
     {
         private GccContext db = new GccContext();
 
+        public PartialViewResult Card()
+        {
+            var model = new Enquete();
+
+            return PartialView("Card", model);
+        }
         //
         // GET: /Enquete/
 

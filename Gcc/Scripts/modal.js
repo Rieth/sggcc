@@ -1,15 +1,13 @@
-﻿$(document).on('click', '.openModal', function () {
-    var path = $(this).attr("data-path");
-    $("#modal").load(path, function () {
-        $("#modal").modal();
-    })
-});
+﻿$(document).ready(function () {
+    $(document).on('click', '.open-modal', function () {
+        var path = $(this).attr("data-path");
+        $("#modal").load(path, function () {
+            $("#modal").modal();
+        })
+    });
 
-//$(function () {
-//    $(".openModal").click(function () {
-//        var path = $(this).attr("data-path");
-//        $("#modal").load(path, function () {
-//            $("#modal").modal();
-//        })
-//    });
-//});
+    $(document).on('click', '.open-modal-next', function () {
+        $(this).next('.my-modal').modal();
+    });
+
+});

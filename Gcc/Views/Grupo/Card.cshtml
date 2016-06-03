@@ -6,10 +6,11 @@
         <h4 class="card-title">@Model.Nome</h4>
         <p class="card-text">@Model.Descricao</p>
         <div class="btn-group">
-            <button class="btn btn-primary openModal" data-path="/Grupo/Edit/@Model.GrupoID">Editar</button>
-            <button class="btn btn-primary openModal" data-path="/Grupo/Produtos/@Model.GrupoID">Produtos</button>
-            <button class="btn btn-primary openModal" data-path="/Cliente/@Model.GrupoID">Participantes</button>
-            <button class="btn btn-primary openModal" data-path="/Enquete/@Model.GrupoID">Enquetes</button>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Editar", "Grupo", new { id = @Model.GrupoID })';">Editar</button>
+            @*<button class="btn btn-primary open-modal" data-path="/Grupo/Editar/@Model.GrupoID">Editar</button>
+            <button class="btn btn-primary open-modal" data-path="/Grupo/Produtos/@Model.GrupoID">Produtos</button>
+            <button class="btn btn-primary open-modal" data-path="/Grupo/Clientes/@Model.GrupoID">Participantes</button>
+            <button class="btn btn-primary open-modal" data-path="/Grupo/Enquetes/@Model.GrupoID">Enquetes</button*@>
         </div>
     </div>
 </div>

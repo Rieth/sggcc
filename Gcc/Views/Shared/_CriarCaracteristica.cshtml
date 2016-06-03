@@ -6,34 +6,45 @@
 
 @using (Html.BeginCollectionItem("Caracteristicas"))
 {
-    <div class="row top30">
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nome)
+    <div class="row top30 form-inline">
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Nome)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Nome)
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TipoMedida)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.TipoMedida, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoMedida)
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TipoMedida)
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Valor)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Valor)
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.TipoMedida, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TipoMedida)
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Valor2)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Valor2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Valor2)
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Valor)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Valor)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Valor2)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Valor2, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Valor2)
-        </div>         
-     </div>
+    </div>
 }

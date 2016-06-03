@@ -24,8 +24,6 @@ namespace Gcc.Web.Controllers
 
             ViewBag.Visibilidades = visibilidades;
         }
-        //
-        // GET: /Grupo/
 
         public ActionResult Index()
         {
@@ -34,15 +32,23 @@ namespace Gcc.Web.Controllers
             return View(grupos);
         }
 
-        public ActionResult Produtos(long id)
-        {
-            return View(db.Produtoes.Where(p => p.GrupoID == id).ToList());
-        }
+        //public ActionResult Produtos(long id)
+        //{
+        //    return View(new Grupo());
+        //    //return View(db.Grupoes.Where(g => g.GrupoID == id).SingleOrDefault());
+        //}
 
-        //
-        // GET: /Grupo/Details/5
+        //public ActionResult Clientes(long id)
+        //{
+        //    return View(db.ParticipanteGrupoes.Where(pg =>pg.GrupoID == id).Select(c =>c.Cliente).ToList());
+        //}
 
-        public ActionResult Details(long id = 0)
+        //public ActionResult Enquetes(long id)
+        //{
+        //    return View(db.Enquetes.Where(p => p.GrupoID == id).ToList());
+        //}
+
+        public ActionResult Detalhes(long id = 0)
         {
             Grupo grupo = db.Grupoes.Find(id);
 
@@ -54,72 +60,92 @@ namespace Gcc.Web.Controllers
             return View(grupo);
         }
 
-        //
-        // GET: /Grupo/Create
-
-        public ActionResult Create()
+        public ActionResult Criar()
         {
-            return View(new Grupo());
+            return View("CriarEditar", new Grupo());
         }
 
-        //
-        // POST: /Grupo/Create
+        public ActionResult Editar(long id = 0)
+        {
+            return View("CriarEditar", db.Grupoes.Find(id));
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Grupo grupo)
+        public ActionResult CriarEditar(Grupo grupo)
         {
             if (ModelState.IsValid)
             {
-                db.Grupoes.Add(grupo);
+                if (grupo.GrupoID == 0)
+                {
+                    db.Grupoes.Add(grupo);
+                }
+                else
+                {
+                    foreach (Produto p in grupo.Produtoes)
+                    {
+                        if (p.GrupoID == null)
+                        {
+                            p.GrupoID = grupo.GrupoID;
+                            db.Entry(p).State = EntityState.Added;
+                        }
+                        else
+                            db.Entry(p).State = EntityState.Modified;
+                    }
+
+                    db.Entry(grupo.Endereco).State = EntityState.Modified;
+                    db.Entry(grupo).State = EntityState.Modified;
+                }
+
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
             return View(grupo);
         }
 
-        //
-        // GET: /Grupo/Edit/5
+        ////
+        //// GET: /Grupo/Edit/5
 
-        public ActionResult Edit(long id = 0)
-        {
-            Grupo grupo = db.Grupoes.Find(id);
-            Endereco endereco = db.Enderecoes.Find(grupo.EnderecoID);
+        //public ActionResult Edit(long id = 0)
+        //{
+        //    Grupo grupo = db.Grupoes.Find(id);
+        //    Endereco endereco = db.Enderecoes.Find(grupo.EnderecoID);
 
-            if (grupo == null)
-            {
-                return HttpNotFound();
-            }
+        //    if (grupo == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
 
-            if (endereco != null)
-                grupo.Endereco = endereco;
+        //    if (endereco != null)
+        //        grupo.Endereco = endereco;
 
-            return View(grupo);
-        }
+        //    return View(grupo);
+        //}
 
-        //
-        // POST: /Grupo/Edit/5
+        ////
+        //// POST: /Grupo/Edit/5
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Grupo grupo)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(grupo.Endereco).State = EntityState.Modified;
-                db.Entry(grupo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(Grupo grupo)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(grupo.Endereco).State = EntityState.Modified;
+        //        db.Entry(grupo).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(grupo);
-        }
+        //    return View(grupo);
+        //}
 
         //
         // GET: /Grupo/Delete/5
 
-        public ActionResult Delete(long id = 0)
+        public ActionResult Deletar(long id = 0)
         {
             Grupo grupo = db.Grupoes.Find(id);
             if (grupo == null)

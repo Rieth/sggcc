@@ -11,14 +11,18 @@ namespace Gcc.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Caracteristica
     {
         public long CaracteristicaID { get; set; }
         public Nullable<long> ProdutoID { get; set; }
+        
         public string Nome { get; set; }
+        
         public string Valor { get; set; }
         public string Valor2 { get; set; }
+       
         public string UnidadeMedida { get; set; }
         public string TipoMedida { get; set; }
     

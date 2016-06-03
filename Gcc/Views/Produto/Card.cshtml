@@ -1,13 +1,93 @@
 ﻿@model Gcc.Models.Produto
+@{ var id = Guid.NewGuid().ToString(); }
 
-<div class="card">
-    <img class="card-img-top" src="http://macbook.nl/wp-content/themes/macbook/images/png/iphone318x180.png" alt="Grupo Logo">
-    <div class="card-block">
-        <h4 class="card-title">@Model.Nome</h4>
-        <p class="card-text">@Model.Descricao</p>
-        <a href="~/Produto/Edit/@Model.ProdutoID" class="btn btn-primary">Visualizar</a>
-        <button type="submit" value="~/Produto/Edit/@Model.ProdutoID" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Launch demo modal
-        </button>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginCollectionItem("Produtoes"))
+{
+    @Html.HiddenFor(model => model.GrupoID)
+    @Html.HiddenFor(model => model.ProdutoID)
+
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="card">
+            <img class="card-img-top" src="http://macbook.nl/wp-content/themes/macbook/images/png/iphone318x180.png" alt="Grupo Logo">
+            <div class="card-block">
+                <h4 class="card-title">Produto</h4>
+                @*<div class="row top30">*@
+
+                    <button type="button" class="open-modal-next btn btn-primary">Informações</button>
+                    <div class="my-modal modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Informações Gerais</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group-sm-3">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.Nome)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Nome)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.Descricao)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Descricao)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.Link)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.Link, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Link)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="open-modal-next btn btn-primary">Características</button>
+                    <div class="my-modal modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Informações Gerais</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="Caracteristicas">
+                                        @foreach (var caracteristica in Model.Caracteristicas)
+                                        {
+                                            @Html.Partial("_CriarCaracteristica.cshtml", caracteristica)
+                                        }
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="add btn btn-primary" data-divname="Caracteristicas" data-url="/_CriarCaracteristica/">Adicionar Caracteristica</button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @*</div>*@
+            </div>
+        </div>
     </div>
-</div>
+}

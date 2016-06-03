@@ -1,28 +1,36 @@
 ﻿@model Gcc.Models.Grupo
 
+@{
+    ViewBag.Title = "Grupo";
+}
 
-    <div class="modal-dialog">
-        <div class="modal-content">
-            @using (Html.BeginForm())
-            {
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Editar grupo</h4>
-                </div>
+<h2>Novo Grupo</h2>
 
-                @Html.AntiForgeryToken()
+@using (Html.BeginForm("CriarEditar", "Grupo"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.GrupoID)
+    @Html.HiddenFor(model => model.EnderecoID)
+    @Html.HiddenFor(model => model.Endereco.EnderecoID)
 
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true)
-                        @Html.HiddenFor(model => model.GrupoID)
-                        @Html.HiddenFor(model => model.EnderecoID)
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-target="#tabGrupo" data-toggle="tab">Grupo</a></li>
+            <li><a data-target="#tabGrupoEndereco" data-toggle="tab">Endereço</a></li>
+            <li><a data-target="#tabGrupoProdutos" data-toggle="tab">Produtos</a></li>
+            <li><a data-target="#tabGrupoEnquetes" data-toggle="tab">Enquetes</a></li>
+        </ul>
 
+        <div class="row">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabGrupo">
+                    <div class="form-group col-lg-3 col-sm-3">
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Nome)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Nome)
+                            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Nome)
                         </div>
 
@@ -30,7 +38,7 @@
                             @Html.LabelFor(model => model.Descricao)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Descricao)
+                            @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Descricao)
                         </div>
 
@@ -38,15 +46,14 @@
                             @Html.LabelFor(model => model.Visibilidade)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Visibilidade)
-                            @Html.ValidationMessageFor(model => model.Visibilidade)
+                            @Html.DropDownList("Visibilidades", null, new { @class = "form-control" })
                         </div>
 
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Email)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Email)
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Email)
                         </div>
 
@@ -54,7 +61,7 @@
                             @Html.LabelFor(model => model.Telefone)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Telefone)
+                            @Html.TextBoxFor(model => model.Telefone, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Telefone)
                         </div>
 
@@ -62,16 +69,18 @@
                             @Html.LabelFor(model => model.Celular)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Celular)
+                            @Html.TextBoxFor(model => model.Celular, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Celular)
                         </div>
-
-                        @Html.HiddenFor(model => model.Endereco.EnderecoID)
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabGrupoEndereco">
+                    <div class="form-group col-lg-3 col-sm-3">
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Endereco.CEP)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Endereco.CEP)
+                            @Html.TextBoxFor(model => model.Endereco.CEP, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Endereco.CEP)
                         </div>
 
@@ -79,7 +88,7 @@
                             @Html.LabelFor(model => model.Endereco.Estado)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Endereco.Estado)
+                            @Html.TextBoxFor(model => model.Endereco.Estado, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Endereco.Estado)
                         </div>
 
@@ -87,7 +96,7 @@
                             @Html.LabelFor(model => model.Endereco.Cidade)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Endereco.Cidade)
+                            @Html.TextBoxFor(model => model.Endereco.Cidade, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Endereco.Cidade)
                         </div>
 
@@ -95,7 +104,7 @@
                             @Html.LabelFor(model => model.Endereco.Bairro)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Endereco.Bairro)
+                            @Html.TextBoxFor(model => model.Endereco.Bairro, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Endereco.Bairro)
                         </div>
 
@@ -103,7 +112,7 @@
                             @Html.LabelFor(model => model.Endereco.Rua)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Endereco.Rua)
+                            @Html.TextBoxFor(model => model.Endereco.Rua, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Endereco.Rua)
                         </div>
 
@@ -111,23 +120,41 @@
                             @Html.LabelFor(model => model.Endereco.Numero)
                         </div>
                         <div class="editor-field">
-                            @Html.EditorFor(model => model.Endereco.Numero)
+                            @Html.TextBoxFor(model => model.Endereco.Numero, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Endereco.Numero)
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                    <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                <div class="tab-pane" id="tabGrupoProdutos">
+                    <div class="Produtos">
+                        @foreach (var produto in Model.Produtoes)
+                        {
+                            @Html.Partial("~/Views/Produto/Card.cshtml", produto)
+                        }
+                    </div>
+                    <div class="row">
+                        <button type="button" class="add btn btn-primary" data-divname="Produtos" data-url="/Produto/Card/">Adicionar Produto</button>
+                    </div>
                 </div>
-            }
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+                <div class="tab-pane" id="tabGrupoEnquetes">
+                    <div class="Enquetes">
+                        @foreach (var enquete in Model.Enquetes)
+                        {
+                            @Html.Partial("~/Views/Enquete/Card.cshtml", enquete)
+                        }
+                    </div>
+                    <div class="row">
+                        <button type="button" class="add btn btn-primary" data-divname="Enquetes" data-url="/Enquete/Card/">Adicionar Enquete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-success" value="CriarEditar">Salvar</button>
+        </div>
     </div>
+}
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

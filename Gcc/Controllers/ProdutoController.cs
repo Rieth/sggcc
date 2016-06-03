@@ -22,11 +22,11 @@ namespace Gcc.Web.Controllers
             return View(db.Produtoes.ToList());
         }
 
-        public PartialViewResult AdicionarProduto()
+        public PartialViewResult Card()
         {
             var model = new Produto();
 
-            return PartialView("_CriarProduto", model);
+            return PartialView("Card", model);
         }
 
         //
@@ -39,17 +39,6 @@ namespace Gcc.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(produto);
-        }
-
-        //
-        // GET: /Produto/Create
-
-        public ActionResult Create()
-        {
-            Produto produto = new Produto();
-            produto.Caracteristicas.Add(new Caracteristica());
-
             return View(produto);
         }
 

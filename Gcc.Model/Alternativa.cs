@@ -20,7 +20,7 @@ namespace Gcc.Models
         }
     
         public long AlternativaID { get; set; }
-        public Nullable<long> EnqueteID { get; set; }
+        public Nullable<long> EnqueteID { get; set; }    
         public string Nome { get; set; }
         public string Valor { get; set; }
     
