@@ -126,30 +126,30 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="tabGrupoProdutos">
-                    <div class="Produtos">
+                    <div class="row top30 Produtos">
                         @foreach (var produto in Model.Produtoes)
                         {
                             @Html.Partial("~/Views/Produto/Card.cshtml", produto)
                         }
                     </div>
-                    <div class="row">
+                    <div class="row top30">
                         <button type="button" class="add btn btn-primary" data-divname="Produtos" data-url="/Produto/Card/">Adicionar Produto</button>
                     </div>
                 </div>
                 <div class="tab-pane" id="tabGrupoEnquetes">
-                    <div class="Enquetes">
+                    <div class="row top30 Enquetes">
                         @foreach (var enquete in Model.Enquetes)
                         {
                             @Html.Partial("~/Views/Enquete/Card.cshtml", enquete)
                         }
                     </div>
-                    <div class="row">
+                    <div class="row top30">
                         <button type="button" class="add btn btn-primary" data-divname="Enquetes" data-url="/Enquete/Card/">Adicionar Enquete</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row top30">
             <button type="submit" class="btn btn-success" value="CriarEditar">Salvar</button>
         </div>
     </div>

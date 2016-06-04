@@ -71,9 +71,10 @@ namespace Gcc.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (cliente.UserId == 0)
+                cliente.UserId = WebSecurity.CurrentUserId;
+
+                if (cliente.ClienteID == 0)
                 {
-                    cliente.UserId = WebSecurity.CurrentUserId;
                     db.Clientes.Add(cliente);
                 }else
                     db.Entry(cliente).State = EntityState.Modified;

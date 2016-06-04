@@ -14,6 +14,13 @@ namespace Gcc.Web.Controllers
     {
         private GccContext db = new GccContext();
 
+        public PartialViewResult CriarAlternativa()
+        {
+            var model = new Alternativa();
+
+            return PartialView("_CriarAlternativa", model);
+        }
+
         public PartialViewResult Card()
         {
             var model = new Enquete();

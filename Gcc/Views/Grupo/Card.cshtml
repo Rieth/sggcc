@@ -1,16 +1,13 @@
 ﻿@model Gcc.Models.Grupo
 
-<div class="card">
-    <img class="card-img-top" src="http://www-03.ibm.com/security/assets/img/cryptocards-318x180.jpg" alt="Grupo Logo">
-    <div class="card-block">
-        <h4 class="card-title">@Model.Nome</h4>
-        <p class="card-text">@Model.Descricao</p>
-        <div class="btn-group">
-            <button class="btn btn-primary" onclick="location.href='@Url.Action("Editar", "Grupo", new { id = @Model.GrupoID })';">Editar</button>
-            @*<button class="btn btn-primary open-modal" data-path="/Grupo/Editar/@Model.GrupoID">Editar</button>
-            <button class="btn btn-primary open-modal" data-path="/Grupo/Produtos/@Model.GrupoID">Produtos</button>
-            <button class="btn btn-primary open-modal" data-path="/Grupo/Clientes/@Model.GrupoID">Participantes</button>
-            <button class="btn btn-primary open-modal" data-path="/Grupo/Enquetes/@Model.GrupoID">Enquetes</button*@>
+<div class="col-md-4 col-lg-4 col-sm-4">
+    <div class="card">
+        <img class="card-img-top" height="200" src="http://downloadicons.net/sites/default/files/user-group-icon-80286.png" alt="Grupo Logo">
+        <div class="card-block">
+            <h4 class="card-title">@Model.Nome</h4>
+            <p class="card-text">@Model.Descricao</p>
+            <button type="button" class="btn btn-success btn-block" onclick="location.href='@Url.Action("Editar", "Grupo", new { id = @Model.GrupoID })';">Visualizar</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Grupo", new { id = @Model.GrupoID })';">Editar</button>
         </div>
     </div>
 </div>

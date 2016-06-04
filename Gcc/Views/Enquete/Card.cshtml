@@ -12,12 +12,10 @@
 
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="card">
-            <img class="card-img-top" src="https://www.accenture.com/t00010101T000000w320/gb-en/_acnmedia/Accenture/Conversion-Assets/DotCom/Images/Global/Digital_15/Accenture-PE-icon-1-320.png" alt="Grupo Logo">
+            <img class="card-img-top" height="200" src="https://www.accenture.com/t00010101T000000w320/gb-en/_acnmedia/Accenture/Conversion-Assets/DotCom/Images/Global/Digital_15/Accenture-PE-icon-1-320.png" alt="Grupo Logo">
             <div class="card-block">
                 <h4 class="card-title">Enquete</h4>
-                @*<div class="row top30">*@
-
-                <button type="button" class="open-modal-next btn btn-primary">Informações</button>
+                <button type="button" class="open-modal-next btn btn-success btn-block">Informações</button>
                 <div class="my-modal modal fade" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
@@ -46,13 +44,13 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <button type="button" class="open-modal-next btn btn-primary">Alternativas</button>
+                <button type="button" class="open-modal-next btn btn-primary btn-block">Alternativas</button>
                 <div class="my-modal modal fade" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
@@ -68,17 +66,16 @@
                                         @Html.Partial("_CriarAlternativa.cshtml", alternativa)
                                     }
                                 </div>
-                                <div class="row">
-                                    <button type="button" class="add btn btn-primary" data-divname="Alternativas" data-url="/_CriarAlternativa/">Adicionar Alternativa</button>
+                                <div class="row top30">
+                                    <button type="button" class="add btn btn-primary" data-divname="Alternativas" data-url="/Enquete/CriarAlternativa">Adicionar Alternativa</button>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                @*</div>*@
             </div>
         </div>
     </div>

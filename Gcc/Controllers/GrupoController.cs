@@ -84,7 +84,7 @@ namespace Gcc.Web.Controllers
                 {
                     foreach (Produto p in grupo.Produtoes)
                     {
-                        if (p.GrupoID == null)
+                        if (p.GrupoID == null || p.GrupoID == 0)
                         {
                             p.GrupoID = grupo.GrupoID;
                             db.Entry(p).State = EntityState.Added;

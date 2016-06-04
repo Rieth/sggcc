@@ -22,6 +22,13 @@ namespace Gcc.Web.Controllers
             return View(db.Produtoes.ToList());
         }
 
+        public PartialViewResult CriarCaracteristica()
+        {
+            var model = new Caracteristica();
+
+            return PartialView("_CriarCaracteristica", model);
+        }
+
         public PartialViewResult Card()
         {
             var model = new Produto();

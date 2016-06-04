@@ -12,12 +12,10 @@
 
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="card">
-            <img class="card-img-top" src="http://macbook.nl/wp-content/themes/macbook/images/png/iphone318x180.png" alt="Grupo Logo">
+            <img class="card-img-top" height="200" src="http://macbook.nl/wp-content/themes/macbook/images/png/iphone318x180.png" alt="Grupo Logo">
             <div class="card-block">
                 <h4 class="card-title">Produto</h4>
-                @*<div class="row top30">*@
-
-                    <button type="button" class="open-modal-next btn btn-primary">Informações</button>
+                    <button type="button" class="open-modal-next btn btn-primary btn-block">Informações</button>
                     <div class="my-modal modal fade" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
@@ -60,7 +58,7 @@
                         </div>
                     </div>
 
-                    <button type="button" class="open-modal-next btn btn-primary">Características</button>
+                    <button type="button" class="open-modal-next btn btn-primary btn-block">Características</button>
                     <div class="my-modal modal fade" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
@@ -70,14 +68,14 @@
                                     <h4 class="modal-title">Informações Gerais</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="Caracteristicas">
+                                    <div class="row Caracteristicas">
                                         @foreach (var caracteristica in Model.Caracteristicas)
                                         {
                                             @Html.Partial("_CriarCaracteristica.cshtml", caracteristica)
                                         }
                                     </div>
-                                    <div class="row">
-                                        <button type="button" class="add btn btn-primary" data-divname="Caracteristicas" data-url="/_CriarCaracteristica/">Adicionar Caracteristica</button>
+                                    <div class="row top30">
+                                        <button type="button" class="add btn btn-primary" data-divname="Caracteristicas" data-url="/Produto/CriarCaracteristica">Adicionar Caracteristica</button>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -86,7 +84,6 @@
                             </div>
                         </div>
                     </div>
-                @*</div>*@
             </div>
         </div>
     </div>

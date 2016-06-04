@@ -1,5 +1,6 @@
 ﻿body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    background-color: #f1f1f1;
 }
 
 .navbar-fixed-top .nav {
@@ -33,4 +34,8 @@ max-width: 50%;
   
 }.top30{
     margin-top: 30px;
+}.card {
+    background-color: #fff;
+}.card-img-top {
+    width:100%;
 }
