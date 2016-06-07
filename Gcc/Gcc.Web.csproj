@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BeginCollectionItem">
-      <HintPath>..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -227,6 +224,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlClientSideValidationExtensions.cs" />
+    <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -345,7 +344,7 @@
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Grupo\Details.cshtml" />
-    <Content Include="Views\Grupo\CriarEditar.cshtml" />
+    <Content Include="Views\Grupo\Criar.cshtml" />
     <Content Include="Views\Grupo\Card.cshtml" />
     <Content Include="Views\Produto\Details.cshtml" />
     <Content Include="Views\Produto\Card.cshtml" />
@@ -353,11 +352,12 @@
     <Content Include="Views\Cliente\EditarInformacoes.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Shared\_CriarCaracteristica.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
-    <Content Include="Views\Shared\_CriarProduto.cshtml" />
     <Content Include="Views\Enquete\Details.cshtml" />
     <Content Include="Views\Shared\_CriarAlternativa.cshtml" />
     <Content Include="Views\Enquete\Card.cshtml" />
+    <Content Include="Views\Grupo\Editar.cshtml" />
+    <Content Include="Views\Produto\Criar.cshtml" />
+    <Content Include="Views\Produto\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,12 +22,21 @@ namespace Gcc.Web.Controllers
             return View(db.Produtoes.ToList());
         }
 
-        public PartialViewResult CriarCaracteristica()
+        public PartialViewResult AdicionarCaracteristica()
         {
             var model = new Caracteristica();
 
             return PartialView("_CriarCaracteristica", model);
         }
+
+        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        //public PartialViewResult CriarCaracteristica(string containerPrefix)
+        //{
+        //    ViewData["ContainerPrefix"] = containerPrefix;
+        //    var model = new Caracteristica();
+
+        //    return PartialView("_CriarCaracteristica", model);
+        //}
 
         public PartialViewResult Card()
         {
@@ -50,17 +59,32 @@ namespace Gcc.Web.Controllers
         }
 
         //
+        // GET: /Produto/Create
+
+        public ActionResult Criar(int id)
+        {
+            Grupo grupo = db.Grupoes.Where(g => g.GrupoID == id).FirstOrDefault();
+
+            Produto produto = new Produto();
+            produto.GrupoID = grupo.GrupoID;
+            produto.Grupo = grupo;
+
+            return View(produto);
+        }
+
+        //
         // POST: /Produto/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Produto produto)
+        public ActionResult Criar(Produto produto)
         {
             if (ModelState.IsValid)
             {
                 db.Produtoes.Add(produto);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Editar", "Grupo", new { id = produto.GrupoID });
             }
 
             return View(produto);
@@ -69,7 +93,7 @@ namespace Gcc.Web.Controllers
         //
         // GET: /Produto/Edit/5
 
-        public ActionResult Edit(long id = 0)
+        public ActionResult Editar(long id = 0)
         {
             Produto produto = db.Produtoes.Find(id);
             if (produto == null)
@@ -84,16 +108,34 @@ namespace Gcc.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Produto produto)
+        public ActionResult Editar(Produto produto)
         {
             if (ModelState.IsValid)
             {
+                foreach (Caracteristica c in produto.Caracteristicas)
+                {
+                    c.ProdutoID = produto.ProdutoID;
+
+                    if (c.CaracteristicaID == 0)
+                    {
+                        db.Caracteristicas.Add(c);
+                    }
+                    else
+                    {
+                        db.Entry(c).State = EntityState.Modified;
+                    }
+                }
+
                 db.Entry(produto).State = EntityState.Modified;
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Editar", "Grupo", new { id = produto.GrupoID });
             }
             return View(produto);
         }
+
+
 
         //
         // GET: /Produto/Delete/5

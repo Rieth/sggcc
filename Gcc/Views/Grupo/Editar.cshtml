@@ -3,21 +3,19 @@
 @{
     ViewBag.Title = "Grupo";
 }
+<div class="container">
+    <h2>Novo Grupo</h2>
 
-<h2>Novo Grupo</h2>
+    @using (Html.BeginForm("Editar", "Grupo"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.GrupoID)
+        @Html.HiddenFor(model => model.EnderecoID)
+        @Html.HiddenFor(model => model.Endereco.EnderecoID)
 
-@using (Html.BeginForm("CriarEditar", "Grupo"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    @Html.HiddenFor(model => model.GrupoID)
-    @Html.HiddenFor(model => model.EnderecoID)
-    @Html.HiddenFor(model => model.Endereco.EnderecoID)
-
-    <div class="container">
         <ul class="nav nav-tabs">
             <li class="active"><a data-target="#tabGrupo" data-toggle="tab">Grupo</a></li>
-            <li><a data-target="#tabGrupoEndereco" data-toggle="tab">Endereço</a></li>
             <li><a data-target="#tabGrupoProdutos" data-toggle="tab">Produtos</a></li>
             <li><a data-target="#tabGrupoEnquetes" data-toggle="tab">Enquetes</a></li>
         </ul>
@@ -25,7 +23,7 @@
         <div class="row">
             <div class="tab-content">
                 <div class="tab-pane active" id="tabGrupo">
-                    <div class="form-group col-lg-3 col-sm-3">
+                    <div class="form-group col-lg-6 col-md-6 col-xs-12">
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Nome)
                         </div>
@@ -73,9 +71,7 @@
                             @Html.ValidationMessageFor(model => model.Celular)
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane" id="tabGrupoEndereco">
-                    <div class="form-group col-lg-3 col-sm-3">
+                    <div class="form-group col-lg-6 col-md-6 col-xs-12">
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Endereco.CEP)
                         </div>
@@ -107,7 +103,7 @@
                             @Html.TextBoxFor(model => model.Endereco.Bairro, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Endereco.Bairro)
                         </div>
-
+                        @*  *@
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Endereco.Rua)
                         </div>
@@ -126,34 +122,42 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="tabGrupoProdutos">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 col-xs-3">
+                            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Criar", "Produto", new { id = @Model.GrupoID })';">Criar Produto</button>
+                        </div>
+                    </div>
                     <div class="row top30 Produtos">
                         @foreach (var produto in Model.Produtoes)
                         {
                             @Html.Partial("~/Views/Produto/Card.cshtml", produto)
                         }
-                    </div>
-                    <div class="row top30">
-                        <button type="button" class="add btn btn-primary" data-divname="Produtos" data-url="/Produto/Card/">Adicionar Produto</button>
-                    </div>
+                    </div>                    
                 </div>
                 <div class="tab-pane" id="tabGrupoEnquetes">
                     <div class="row top30 Enquetes">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 col-xs-3">
+                                <button type="button" class="add btn btn-primary" data-divname="Enquetes" data-url="/Enquete/Card/">Adicionar Enquete</button>
+                            </div>
+                        </div>
                         @foreach (var enquete in Model.Enquetes)
                         {
                             @Html.Partial("~/Views/Enquete/Card.cshtml", enquete)
                         }
-                    </div>
-                    <div class="row top30">
-                        <button type="button" class="add btn btn-primary" data-divname="Enquetes" data-url="/Enquete/Card/">Adicionar Enquete</button>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>
         <div class="row top30">
-            <button type="submit" class="btn btn-success" value="CriarEditar">Salvar</button>
+            <div class="col-md-3 col-lg-3 col-xs-3">
+                <button type="submit" class="btn btn-success" value="Editar">Salvar</button>
+            </div>
         </div>
-    </div>
-}
+
+    }
+
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

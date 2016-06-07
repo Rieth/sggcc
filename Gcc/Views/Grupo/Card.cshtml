@@ -1,5 +1,44 @@
 ﻿@model Gcc.Models.Grupo
 
+<meta property="og:url" content="http://www.your-domain.com/your-page.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Your Website Title" />
+<meta property="og:description" content="Your description" />
+<meta property="og:image" content="http://www.your-domain.com/path/image.jpg" />
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '106534159747464', status: true, cookie: true,
+            xfbml: true
+        });
+    };
+    (function () {
+        var e = document.createElement('script'); e.async = true;
+        e.src = document.location.protocol +
+        '//connect.facebook.net/en_US/all.js';
+        document.getElementById('fb-root').appendChild(e);
+    }());
+
+    $(document).ready(function () {
+        $('#share_button').click(function (e) {
+            e.preventDefault();
+            FB.ui(
+            {
+                method: 'feed',
+                name: 'This is the content of the "name" field.',
+                link: ' http://www.hyperarts.com/',
+                picture: 'http://www.hyperarts.com/external-xfbml/share-image.gif',
+                caption: 'This is the content of the "caption" field.',
+                description: 'This is the content of the "description" field, below the caption.',
+                message: ''
+            });
+        });
+    });
+</script>
+
 <div class="col-md-4 col-lg-4 col-sm-4">
     <div class="card">
         <img class="card-img-top" height="200" src="http://downloadicons.net/sites/default/files/user-group-icon-80286.png" alt="Grupo Logo">
@@ -8,6 +47,8 @@
             <p class="card-text">@Model.Descricao</p>
             <button type="button" class="btn btn-success btn-block" onclick="location.href='@Url.Action("Editar", "Grupo", new { id = @Model.GrupoID })';">Visualizar</button>
             <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Grupo", new { id = @Model.GrupoID })';">Editar</button>
+            <button type="button" id ="share_button" class="btn btn-success btn-block">Compartilhar</button>
+                    
         </div>
     </div>
 </div>
