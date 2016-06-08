@@ -14,9 +14,6 @@ namespace Gcc.Web.Controllers
     {
         private GccContext db = new GccContext();
 
-        //
-        // GET: /Produto/
-
         public ActionResult Index()
         {
             return View(db.Produtoes.ToList());
@@ -29,15 +26,6 @@ namespace Gcc.Web.Controllers
             return PartialView("_CriarCaracteristica", model);
         }
 
-        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        //public PartialViewResult CriarCaracteristica(string containerPrefix)
-        //{
-        //    ViewData["ContainerPrefix"] = containerPrefix;
-        //    var model = new Caracteristica();
-
-        //    return PartialView("_CriarCaracteristica", model);
-        //}
-
         public PartialViewResult Card()
         {
             var model = new Produto();
@@ -45,12 +33,10 @@ namespace Gcc.Web.Controllers
             return PartialView("Card", model);
         }
 
-        //
-        // GET: /Produto/Details/5
-
-        public ActionResult Details(long id = 0)
+        public ActionResult Detalhes(long id = 0)
         {
-            Produto produto = db.Produtoes.Find(id);
+            Produto produto = db.Produtoes.Find(id);            
+
             if (produto == null)
             {
                 return HttpNotFound();
@@ -58,8 +44,38 @@ namespace Gcc.Web.Controllers
             return View(produto);
         }
 
-        //
-        // GET: /Produto/Create
+        public ActionResult RequisitarProduto(long id = 0)
+        {
+            Produto produto = db.Produtoes.Find(id);
+
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+
+            ProdutoRequerido produtoRequerido = new ProdutoRequerido();
+            produtoRequerido.Produto = produto;
+            produtoRequerido.GrupoID = produto.GrupoID;
+            produtoRequerido.ProdutoID = produto.ProdutoID;
+            produtoRequerido.Quantidade = 0;
+
+            return View(produtoRequerido);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RequisitarProduto(ProdutoRequerido produtoRequerido)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ProdutoRequeridoes.Add(produtoRequerido);
+                db.SaveChanges();
+
+                return RedirectToAction("Detalhes", "Grupo", new { id = produtoRequerido.GrupoID });
+            }
+
+            return View(produtoRequerido);
+        }
 
         public ActionResult Criar(int id)
         {
@@ -71,9 +87,6 @@ namespace Gcc.Web.Controllers
 
             return View(produto);
         }
-
-        //
-        // POST: /Produto/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -90,9 +103,6 @@ namespace Gcc.Web.Controllers
             return View(produto);
         }
 
-        //
-        // GET: /Produto/Edit/5
-
         public ActionResult Editar(long id = 0)
         {
             Produto produto = db.Produtoes.Find(id);
@@ -102,9 +112,6 @@ namespace Gcc.Web.Controllers
             }
             return View(produto);
         }
-
-        //
-        // POST: /Produto/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -135,11 +142,6 @@ namespace Gcc.Web.Controllers
             return View(produto);
         }
 
-
-
-        //
-        // GET: /Produto/Delete/5
-
         public ActionResult Delete(long id = 0)
         {
             Produto produto = db.Produtoes.Find(id);
@@ -149,9 +151,6 @@ namespace Gcc.Web.Controllers
             }
             return View(produto);
         }
-
-        //
-        // POST: /Produto/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

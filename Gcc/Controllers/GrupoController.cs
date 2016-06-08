@@ -130,6 +130,8 @@ namespace Gcc.Web.Controllers
                     //        }
                     //    }
                     //}
+                    grupo.Produtoes = null;
+                    grupo.Enquetes = null;
 
                     db.Entry(grupo.Endereco).State = EntityState.Modified;
                     db.Entry(grupo).State = EntityState.Modified;
@@ -147,42 +149,7 @@ namespace Gcc.Web.Controllers
         }
 
 
-        //
-        // GET: /Grupo/Edit/5
-
-        public ActionResult Edit(long id = 0)
-        {
-            Grupo grupo = db.Grupoes.Find(id);
-            Endereco endereco = db.Enderecoes.Find(grupo.EnderecoID);
-
-            if (grupo == null)
-            {
-                return HttpNotFound();
-            }
-
-            if (endereco != null)
-                grupo.Endereco = endereco;
-
-            return View(grupo);
-        }
-
-        //
-        // POST: /Grupo/Edit/5
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Grupo grupo)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(grupo.Endereco).State = EntityState.Modified;
-                db.Entry(grupo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(grupo);
-        }
+        
 
         //
         // GET: /Grupo/Delete/5

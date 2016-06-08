@@ -1,0 +1,56 @@
+﻿@model Gcc.Models.ProdutoRequerido
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        @using (Html.BeginForm("RequisitarProduto", "Produto"))
+        {
+
+            if (Model.ProdutoRequeridoID != 0)
+            {
+                @Html.HiddenFor(model => model.ProdutoRequeridoID)
+            }
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(model => model.GrupoID)
+            @Html.HiddenFor(model => model.ProdutoID)
+
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Informações Gerais</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group-sm-3">
+                    <div class="display-label">
+                        @Html.LabelFor(model => model.Produto.Nome)
+                    </div>
+
+                    <div class="display-label">
+                        @Html.LabelFor(model => model.Produto.Descricao)
+                    </div>
+
+                    <div class="display-label">
+                        @Html.LabelFor(model => model.Produto.Link)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Quantidade)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xs-3">
+                        <button type="submit" class="btn btn-success" value="RequisitarProduto">Requisitar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

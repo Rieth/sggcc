@@ -11,11 +11,17 @@
 {
     @Html.HiddenFor(model => model.ProdutoID)
 
+    <div class="modal" id="modal">
+
+    </div>
+
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="card">
             <img class="card-img-top" height="200" src="http://macbook.nl/wp-content/themes/macbook/images/png/iphone318x180.png" alt="Grupo Logo">
             <div class="card-block">
                 <h4 class="card-title">Produto</h4>
+                <button type="button" class="open-modal btn btn-danger btn-block" data-path="/Produto/RequisitarProduto/@Model.ProdutoID">Requisitar Produto</button>
+                <button type="button" class="btn btn-success btn-block" onclick="location.href='@Url.Action("Detalhes", "Produto", new { id = @Model.ProdutoID })';">Detalhes</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Produto", new { id = @Model.ProdutoID })';">Editar</button>
                     @*<button type="button" class="open-modal-next btn btn-success btn-block">Informações</button>
                     <div class="my-modal modal fade" role="dialog">

@@ -1,4 +1,5 @@
-﻿using Gcc.Models;
+﻿using Gcc.Data.DataLayerEntityFramework;
+using Gcc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Gcc.Web.Controllers
 {
     public class AlternativaController : Controller
     {
+        private GccContext db = new GccContext();
         //
         // GET: /Alternativa/
 
@@ -17,11 +19,19 @@ namespace Gcc.Web.Controllers
             return View();
         }
 
-        public PartialViewResult AdicionarAlternativa()
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        public ActionResult Deletar(int id)
         {
-            var model = new Alternativa();
+            Alternativa alternativa = db.Alternativas.Find(id);
 
-            return PartialView("_CriarAlternativa", model);
+            if (alternativa != null)
+            {
+                db.Alternativas.Remove(alternativa);
+                db.SaveChanges();
+            }
+
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+
         }
 
     }

@@ -213,6 +213,7 @@
     <Compile Include="Controllers\EnqueteController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
+    <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Data\DataLayerEntityFramework\GccContext.cs" />
     <Compile Include="Data\DataLayerEntityFramework\Repository.cs" />
     <Compile Include="Data\DataLayerAbstraction\IRepository.cs" />
@@ -343,21 +344,22 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Grupo\Index.cshtml" />
-    <Content Include="Views\Grupo\Details.cshtml" />
     <Content Include="Views\Grupo\Criar.cshtml" />
     <Content Include="Views\Grupo\Card.cshtml" />
-    <Content Include="Views\Produto\Details.cshtml" />
     <Content Include="Views\Produto\Card.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\EditarInformacoes.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Shared\_CriarCaracteristica.cshtml" />
-    <Content Include="Views\Enquete\Details.cshtml" />
     <Content Include="Views\Shared\_CriarAlternativa.cshtml" />
     <Content Include="Views\Enquete\Card.cshtml" />
     <Content Include="Views\Grupo\Editar.cshtml" />
     <Content Include="Views\Produto\Criar.cshtml" />
     <Content Include="Views\Produto\Editar.cshtml" />
+    <Content Include="Views\Grupo\Detalhes.cshtml" />
+    <Content Include="Views\Enquete\Criar.cshtml" />
+    <Content Include="Views\Enquete\Editar.cshtml" />
+    <Content Include="Views\Produto\RequisitarProduto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

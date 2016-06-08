@@ -1,4 +1,5 @@
-﻿using Gcc.Models;
+﻿using Gcc.Data.DataLayerEntityFramework;
+using Gcc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,26 @@ namespace Gcc.Web.Controllers
 {
     public class CaracteristicaController : Controller
     {
-        //
-        // GET: /Caracteristica/
+        private GccContext db = new GccContext();
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public PartialViewResult AdicionarCaracteristica()
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        public ActionResult Deletar(int id)
         {
-            var model = new Caracteristica();
+            Caracteristica caracteristica = db.Caracteristicas.Find(id);
 
-            return PartialView("_CriarCaracteristica", model);
+            if (caracteristica != null)
+            {
+                db.Caracteristicas.Remove(caracteristica);
+                db.SaveChanges();
+            }
+
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+
         }
 
     }

@@ -1,18 +1,17 @@
-﻿@model Gcc.Models.Produto
+﻿@model Gcc.Models.Enquete
 
 @{
-    ViewBag.Title = "Editar Produto";
+    ViewBag.Title = "Criar";
 }
-<div class="container">
-    <h2>Editar Produto</h2>
 
+<div class="container">
+    <h2>Criar</h2>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
         @Html.HiddenFor(model => model.GrupoID)
-        @Html.HiddenFor(model => model.ProdutoID)
 
         <div class="row">
             <div class="form-group col-lg-6 col-md-6 col-xs-12">
@@ -31,33 +30,21 @@
                     @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Descricao)
                 </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.Link)
-                </div>
-                <div class="editor-field">
-                    @Html.TextBoxFor(model => model.Link, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Link)
-                </div>
             </div>
+        </div>
+        <div class="row top30">
+            <div class="col-md-3 col-lg-3 col-xs-3">
+                <button type="button" class="add btn btn-primary" data-divname="alternativas" data-url="/Enquete/AdicionarAlternativa">Adicionar Alternativa</button>
+            </div>
+        </div>
+
+        <div class="row top30 alternativas">
+
         </div>
 
         <div class="row top30">
             <div class="col-md-3 col-lg-3 col-xs-3">
-                <button type="button" class="add btn btn-primary" data-divname="caracteristicas" data-url="/Produto/AdicionarCaracteristica">Adicionar Caracteristica</button>
-            </div>
-        </div>
-
-        <div class="row top30 caracteristicas">
-            @foreach (var caracteristica in Model.Caracteristicas)
-            {
-                @Html.Partial("_CriarCaracteristica", caracteristica);
-            }
-        </div>
-
-        <div class="row top30">
-            <div class="col-md-3 col-lg-3 col-xs-3">
-                <button type="submit" class="btn btn-success" value="Editar">Salvar</button>
+                <button type="submit" class="btn btn-success" value="Criar">Salvar</button>
             </div>
         </div>
     }

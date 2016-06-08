@@ -14,7 +14,7 @@ namespace Gcc.Web.Controllers
     {
         private GccContext db = new GccContext();
 
-        public PartialViewResult CriarAlternativa()
+        public PartialViewResult AdicionarAlternativa()
         {
             var model = new Alternativa();
 
@@ -26,42 +26,20 @@ namespace Gcc.Web.Controllers
             var model = new Enquete();
 
             return PartialView("Card", model);
-        }
-        //
-        // GET: /Enquete/
-
-        public ActionResult Index()
-        {
-            var enquetes = db.Enquetes.Include(e => e.Grupo);
-            return View(enquetes.ToList());
-        }
-
-        public ActionResult Index(long grupoID)
-        {
-            var enquetes = db.Enquetes.Where(e => e.GrupoID == grupoID);
-            return View(enquetes.ToList());
-        }
-
-        //
-        // GET: /Enquete/Details/5
-
-        public ActionResult Details(long id = 0)
-        {
-            Enquete enquete = db.Enquetes.Find(id);
-            if (enquete == null)
-            {
-                return HttpNotFound();
-            }
-            return View(enquete);
-        }
+        }  
 
         //
         // GET: /Enquete/Create
 
-        public ActionResult Create()
+        public ActionResult Criar(int id)
         {
-            ViewBag.GrupoID = new SelectList(db.Grupoes, "GrupoID", "Nome");
-            return View();
+            Grupo grupo = db.Grupoes.Where(g => g.GrupoID == id).FirstOrDefault();
+
+            Enquete enquete = new Enquete();
+            enquete.GrupoID = grupo.GrupoID;
+            enquete.Grupo = grupo;
+
+            return View(enquete);
         }
 
         //
@@ -69,76 +47,58 @@ namespace Gcc.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Enquete enquete)
+        public ActionResult Criar(Enquete enquete)
         {
             if (ModelState.IsValid)
             {
                 db.Enquetes.Add(enquete);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Editar", "Grupo", new { id = enquete.GrupoID });
             }
 
-            ViewBag.GrupoID = new SelectList(db.Grupoes, "GrupoID", "Nome", enquete.GrupoID);
             return View(enquete);
         }
 
-        //
-        // GET: /Enquete/Edit/5
-
-        public ActionResult Edit(long id = 0)
+        public ActionResult Editar(long id = 0)
         {
             Enquete enquete = db.Enquetes.Find(id);
             if (enquete == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.GrupoID = new SelectList(db.Grupoes, "GrupoID", "Nome", enquete.GrupoID);
             return View(enquete);
         }
-
-        //
-        // POST: /Enquete/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Enquete enquete)
+        public ActionResult Editar(Enquete enquete)
         {
             if (ModelState.IsValid)
             {
+                foreach (Alternativa a in enquete.Alternativas)
+                {
+                    a.EnqueteID = enquete.EnqueteID;
+
+                    if (a.AlternativaID == 0)
+                    {
+                        db.Alternativas.Add(a);
+                    }
+                    else
+                    {
+                        db.Entry(a).State = EntityState.Modified;
+                    }
+                }
+
                 db.Entry(enquete).State = EntityState.Modified;
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.GrupoID = new SelectList(db.Grupoes, "GrupoID", "Nome", enquete.GrupoID);
-            return View(enquete);
-        }
 
-        //
-        // GET: /Enquete/Delete/5
-
-        public ActionResult Delete(long id = 0)
-        {
-            Enquete enquete = db.Enquetes.Find(id);
-            if (enquete == null)
-            {
-                return HttpNotFound();
+                return RedirectToAction("Editar", "Grupo", new { id = enquete.GrupoID });
             }
             return View(enquete);
         }
-
-        //
-        // POST: /Enquete/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            Enquete enquete = db.Enquetes.Find(id);
-            db.Enquetes.Remove(enquete);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+        
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

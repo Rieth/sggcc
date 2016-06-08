@@ -1,10 +1,10 @@
 ﻿@model Gcc.Models.Grupo
 
 @{
-    ViewBag.Title = "Grupo";
+    ViewBag.Title = "Editar Grupo";
 }
 <div class="container">
-    <h2>Novo Grupo</h2>
+    <h2>Editar Grupo</h2>
 
     @using (Html.BeginForm("Editar", "Grupo"))
     {
@@ -103,7 +103,7 @@
                             @Html.TextBoxFor(model => model.Endereco.Bairro, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Endereco.Bairro)
                         </div>
-                        @*  *@
+                   
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Endereco.Rua)
                         </div>
@@ -122,12 +122,12 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="tabGrupoProdutos">
-                    <div class="row">
+                    <div class="row top30">
                         <div class="col-md-3 col-lg-3 col-xs-3">
-                            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Criar", "Produto", new { id = @Model.GrupoID })';">Criar Produto</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Criar", "Produto", new { id = @Model.GrupoID })';">Criar Produto</button>
                         </div>
                     </div>
-                    <div class="row top30 Produtos">
+                    <div class="row top30 produtos">
                         @foreach (var produto in Model.Produtoes)
                         {
                             @Html.Partial("~/Views/Produto/Card.cshtml", produto)
@@ -135,12 +135,12 @@
                     </div>                    
                 </div>
                 <div class="tab-pane" id="tabGrupoEnquetes">
-                    <div class="row top30 Enquetes">
-                        <div class="row">
-                            <div class="col-md-3 col-lg-3 col-xs-3">
-                                <button type="button" class="add btn btn-primary" data-divname="Enquetes" data-url="/Enquete/Card/">Adicionar Enquete</button>
-                            </div>
+                    <div class="row top30">
+                        <div class="col-md-3 col-lg-3 col-xs-3">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Criar", "Enquete", new { id = @Model.GrupoID })';">Criar Enquete</button>
                         </div>
+                    </div>
+                    <div class="row top30 enquetes">                        
                         @foreach (var enquete in Model.Enquetes)
                         {
                             @Html.Partial("~/Views/Enquete/Card.cshtml", enquete)

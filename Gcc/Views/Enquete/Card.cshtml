@@ -1,13 +1,14 @@
 ﻿@model Gcc.Models.Enquete
 @{ var id = Guid.NewGuid().ToString(); }
 
+@using Gcc.Web.Helpers
+
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 @using (Html.BeginCollectionItem("Enquetes"))
 {
-    @Html.HiddenFor(model => model.GrupoID)
     @Html.HiddenFor(model => model.EnqueteID)
 
     <div class="col-sm-4 col-lg-4 col-md-4">
@@ -15,7 +16,8 @@
             <img class="card-img-top" height="200" src="https://www.accenture.com/t00010101T000000w320/gb-en/_acnmedia/Accenture/Conversion-Assets/DotCom/Images/Global/Digital_15/Accenture-PE-icon-1-320.png" alt="Grupo Logo">
             <div class="card-block">
                 <h4 class="card-title">Enquete</h4>
-                <button type="button" class="open-modal-next btn btn-success btn-block">Informações</button>
+                <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Enquete", new { id = @Model.EnqueteID })';">Editar</button>
+                @*<button type="button" class="open-modal-next btn btn-success btn-block">Informações</button>
                 <div class="my-modal modal fade" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
@@ -75,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

@@ -35,4 +35,24 @@
             }
         });
     });
+
+    $(document).on('click', '.delete', function () {
+        var id = $(this).attr("data-id");
+        var parent = $(this).parent('div').parent('div');
+        var url = $(this).attr("data-url");
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: { id: id },
+            success: function () {
+                parent.remove();
+                alert("success");
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    });
+
 });

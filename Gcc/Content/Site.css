@@ -1,5 +1,6 @@
 ﻿body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */*/
     background-color: #f1f1f1;
 }
 
@@ -26,16 +27,28 @@ footer {
 }
 
 .search {
-max-width: 50%;
-  max-height: 50px;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  
-}.top30{
+    max-width: 50%;
+    max-height: 50px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.top30 {
     margin-top: 30px;
-}.card {
+}
+
+.top15 {
+    margin-top: 15px;
+}
+
+.card {
     background-color: #fff;
-}.card-img-top {
-    width:100%;
-}
+}
+
+.card-img-top {
+    width: 100%;
+}
