@@ -11,7 +11,8 @@ namespace Gcc.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Grupo
     {
         public Grupo()
@@ -21,17 +22,17 @@ namespace Gcc.Models
             this.Produtoes = new HashSet<Produto>();
             this.ProdutoRequeridoes = new HashSet<ProdutoRequerido>();
         }
-    
+
         public long GrupoID { get; set; }
         public Nullable<long> EnderecoID { get; set; }
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public Nullable<int> QuantidadeTotal { get; set; }
-        public string Visibilidade { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
         public string Celular { get; set; }
-    
+
         public virtual Endereco Endereco { get; set; }
         public virtual ICollection<Enquete> Enquetes { get; set; }
         public virtual ICollection<ParticipantesGrupo> ParticipantesGrupoes { get; set; }

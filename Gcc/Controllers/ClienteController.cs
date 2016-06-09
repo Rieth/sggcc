@@ -8,9 +8,11 @@ using System.Web.Mvc;
 using Gcc.Models;
 using Gcc.Data.DataLayerEntityFramework;
 using WebMatrix.WebData;
+using Gcc.Filters;
 
 namespace Gcc.Web.Controllers
 {
+    [InitializeSimpleMembership]
     public class ClienteController : Controller
     {
         private GccContext db = new GccContext();
@@ -67,6 +69,7 @@ namespace Gcc.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                db.Entry(cliente.Endereco).State = EntityState.Modified;
                 db.Entry(cliente).State = EntityState.Modified;
 
                 db.SaveChanges();

@@ -1,62 +1,113 @@
 ﻿@model Gcc.Models.Cliente
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Perfil";
 }
+<div class="container">
+    <h2>Perfil</h2>
 
-<h2>Create</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ClienteID)
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.EnderecoID)
+        @Html.HiddenFor(model => model.Endereco.EnderecoID)
 
-    @Html.HiddenFor(model => model.ClienteID)
-    @Html.HiddenFor(model => model.UserId)
-    @Html.HiddenFor(model => model.EnderecoID)
+        <div class="row">
+            <div class="form-group col-lg-6 col-md-6 col-xs-12">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Nome)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Nome)
+                </div>
 
-    <fieldset>
-        <legend>Cliente</legend>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Email)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nome)
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Telefone)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Telefone, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Telefone)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Celular)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Celular, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Celular)
+                </div>
+
+            </div>
+            <div class="form-group col-lg-6 col-md-6 col-xs-12">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Endereco.CEP)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Endereco.CEP, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Endereco.CEP)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Endereco.Estado)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Endereco.Estado, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Endereco.Estado)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Endereco.Cidade)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Endereco.Cidade, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Endereco.Cidade)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Endereco.Bairro)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Endereco.Bairro, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Endereco.Bairro)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Endereco.Rua)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Endereco.Rua, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Endereco.Rua)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Endereco.Numero)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Endereco.Numero, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Endereco.Numero)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nome)
-            @Html.ValidationMessageFor(model => model.Nome)
+        <div class="row top30">
+            <div class="col-md-3 col-lg-3 col-xs-3">
+                <button type="submit" class="btn btn-success" value="Perfil">Salvar</button>
+            </div>
         </div>
+    }
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Idade)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Idade)
-            @Html.ValidationMessageFor(model => model.Idade)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Telefone)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Telefone)
-            @Html.ValidationMessageFor(model => model.Telefone)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Celular)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Celular)
-            @Html.ValidationMessageFor(model => model.Celular)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

@@ -8,9 +8,11 @@ using System.Web.Mvc;
 using Gcc.Models;
 using Gcc.Data.DataLayerEntityFramework;
 using System.Web.Security;
+using Gcc.Filters;
 
 namespace Gcc.Web.Controllers
 {
+    [InitializeSimpleMembership]
     public class GrupoController : Controller
     {
         private GccContext db = new GccContext();
@@ -57,44 +59,33 @@ namespace Gcc.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Criar(Grupo grupo)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    if (grupo.GrupoID == 0)
-                    {
-                        db.Grupoes.Add(grupo);
-                        db.SaveChanges();
+                db.Grupoes.Add(grupo);
+                db.SaveChanges();
 
-                        string permissaoEditar = "EDITAR_GRUPO_" + grupo.GrupoID;
-                        Roles.CreateRole(permissaoEditar);
-                        Roles.AddUserToRole(User.Identity.Name, permissaoEditar);
+                string permissaoEditar = "EDITAR_GRUPO_" + grupo.GrupoID;
+                Roles.CreateRole(permissaoEditar);
+                Roles.AddUserToRole(User.Identity.Name, permissaoEditar);
 
-                        return RedirectToAction("Index");
-                    }
-                }
-
-                return View(grupo);
+                return RedirectToAction("Index");
             }
-            catch (InvalidOperationException exc)
-            {
-                string s = exc.ToString();
-                return View();
-            }
+
+            return View(grupo);
         }
 
         [Authorize]
         public ActionResult Editar(long id = 0)
         {
-            //if (User.IsInRole("EDITAR_GRUPO_" + id))
-            //{
+            if (User.IsInRole("EDITAR_GRUPO_" + id))
+            {
 
-            Grupo grupo = db.Grupoes.Find(id);
+                Grupo grupo = db.Grupoes.Find(id);
 
-            return View("Editar", grupo);
-            //}
+                return View("Editar", grupo);
+            }
 
-            //return View("Index");
+            return View("AcessoNegado");
         }
 
         [Authorize]
@@ -106,35 +97,6 @@ namespace Gcc.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //foreach (Produto p in grupo.Produtoes)
-                    //{
-                    //    p.Grupo = grupo;
-                    //    p.GrupoID = grupo.GrupoID;
-
-                    //    if (p.ProdutoID == 0)
-                    //    {
-                    //        db.Produtoes.Add(p);
-                    //    }
-                    //    else
-                    //    {
-                    //        db.Entry(p).State = EntityState.Modified;
-                    //    }
-
-                    //    foreach (Caracteristica c in p.Caracteristicas)
-                    //    {
-                    //        c.Produto = p;
-                    //        c.ProdutoID = p.ProdutoID;
-
-                    //        if (c.CaracteristicaID == 0)
-                    //        {
-                    //            db.Caracteristicas.Add(c);
-                    //        }
-                    //        else
-                    //        {
-                    //            db.Entry(c).State = EntityState.Modified;
-                    //        }
-                    //    }
-                    //}
                     grupo.Produtoes = null;
                     grupo.Enquetes = null;
 

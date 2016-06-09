@@ -285,12 +285,14 @@ namespace Gcc.Web.Controllers
                         // Insert name into the profile table
                         db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
 
-                        //aqui
-                        CriarCliente(user.UserId, user.UserName);
-
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
+
+                        //aqui
+                        user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                        CriarCliente(user.UserId, user.UserName);
+
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
 
                         return RedirectToLocal(returnUrl);
@@ -421,13 +423,14 @@ namespace Gcc.Web.Controllers
         }
         #endregion
 
-        public void CriarCliente(int userID, string userName)
+        public void CriarCliente(long userID, string userName)
         {
             using (GccContext db = new GccContext())
             {
                 Cliente cliente = new Cliente();
                 cliente.UserId = userID;
                 cliente.Nome = userName;
+                cliente.Endereco = new Endereco();
 
                 db.Clientes.Add(cliente);
                 db.SaveChanges();

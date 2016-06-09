@@ -68,8 +68,11 @@ namespace Gcc.Web.Controllers
                 produtoRequerido.Produto = produto;
                 produtoRequerido.GrupoID = produto.GrupoID;
                 produtoRequerido.ProdutoID = produto.ProdutoID;
-                produtoRequerido.ClienteID = db.Clientes.Where(c => c.UserId == WebSecurity.GetUserId(User.Identity.Name)).Select(cl => cl.ClienteID).FirstOrDefault();
 
+                int userID = WebSecurity.GetUserId(User.Identity.Name);
+                Cliente cliente = db.Clientes.Where(c => c.UserId == userID).FirstOrDefault();
+
+                produtoRequerido.ClienteID = cliente.ClienteID;
             }
 
             return View(produtoRequerido);

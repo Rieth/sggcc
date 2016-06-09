@@ -11,6 +11,7 @@ namespace Gcc.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Alternativa
     {
@@ -20,8 +21,8 @@ namespace Gcc.Models
         }
     
         public long AlternativaID { get; set; }
-        public Nullable<long> EnqueteID { get; set; }    
-        public string Nome { get; set; }
+        public Nullable<long> EnqueteID { get; set; }
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
         public string Valor { get; set; }
     
         public virtual Enquete Enquete { get; set; }

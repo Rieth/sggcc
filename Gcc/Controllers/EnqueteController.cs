@@ -7,9 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using Gcc.Models;
 using Gcc.Data.DataLayerEntityFramework;
+using WebMatrix.WebData;
+using Gcc.Filters;
 
 namespace Gcc.Web.Controllers
 {
+    [InitializeSimpleMembership]
     public class EnqueteController : Controller
     {
         private GccContext db = new GccContext();
@@ -26,11 +29,9 @@ namespace Gcc.Web.Controllers
             var model = new Enquete();
 
             return PartialView("Card", model);
-        }  
+        }
 
-        //
-        // GET: /Enquete/Create
-
+        [Authorize]
         public ActionResult Criar(int id)
         {
             Grupo grupo = db.Grupoes.Where(g => g.GrupoID == id).FirstOrDefault();
@@ -42,9 +43,7 @@ namespace Gcc.Web.Controllers
             return View(enquete);
         }
 
-        //
-        // POST: /Enquete/Create
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Criar(Enquete enquete)
@@ -60,6 +59,7 @@ namespace Gcc.Web.Controllers
             return View(enquete);
         }
 
+        [Authorize]
         public ActionResult Editar(long id = 0)
         {
             Enquete enquete = db.Enquetes.Find(id);
@@ -70,6 +70,7 @@ namespace Gcc.Web.Controllers
             return View(enquete);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Editar(Enquete enquete)
@@ -98,7 +99,77 @@ namespace Gcc.Web.Controllers
             }
             return View(enquete);
         }
-        
+
+        public class AlternativaViewModel
+        {
+            public Alternativa Alternativa { get; set; }
+            public bool Votada { get; set; }
+
+            public AlternativaViewModel(Alternativa alternativa, bool votada)
+            {
+                this.Alternativa = alternativa;
+                this.Votada = votada;
+            }
+        }
+
+        [Authorize]
+        public ActionResult Votar(long id = 0)
+        {
+            Enquete enquete = db.Enquetes.Find(id);
+
+            if (enquete == null)
+            {
+                return HttpNotFound();
+            }
+
+            int userID = WebSecurity.GetUserId(User.Identity.Name);
+            Cliente cliente = db.Clientes.Where(c => c.UserId == userID).FirstOrDefault();
+
+            List<Alternativa> alternativas = enquete.Alternativas.ToList();
+            List<AlternativaViewModel> alternatviasVM = new List<AlternativaViewModel>();
+
+            foreach (Alternativa a in alternativas)
+            {
+                Voto voto = db.Votoes.Where(v => v.ClienteID == cliente.ClienteID && v.AlternativaID == a.AlternativaID).FirstOrDefault();
+
+                if (voto != null)
+                    alternatviasVM.Add(new AlternativaViewModel(a, true));
+                else
+                    alternatviasVM.Add(new AlternativaViewModel(a, false));
+            }
+
+            return View(alternatviasVM);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Votar(List<AlternativaViewModel> alternativasVM)
+        {
+            int userID = WebSecurity.GetUserId(User.Identity.Name);
+            Cliente cliente = db.Clientes.Where(c => c.UserId == userID).FirstOrDefault();
+
+            foreach (AlternativaViewModel avm in alternativasVM)
+            {
+                db.Database.ExecuteSqlCommand("DELETE FROM VOTO WHERE ClienteID= {0} AND AlternativaID= {1}", cliente.ClienteID, avm.Alternativa.AlternativaID);
+            }
+
+            Alternativa votada = alternativasVM.Where(avm => avm.Votada == true).Select(a => a.Alternativa).SingleOrDefault();
+
+            Voto voto = new Voto();
+            voto.AlternativaID = votada.AlternativaID;
+            voto.ClienteID = cliente.ClienteID;
+
+            db.Votoes.Add(voto);
+
+            db.SaveChanges();
+
+
+            return View();
+            //return RedirectToAction("Detalhes", "Grupo", new { id = .GrupoID });
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

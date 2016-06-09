@@ -11,6 +11,7 @@ namespace Gcc.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Cliente
     {
@@ -24,10 +25,11 @@ namespace Gcc.Models
         public long ClienteID { get; set; }
         public Nullable<long> EnderecoID { get; set; }
         public Nullable<long> UserId { get; set; }
+        [Required(ErrorMessage="Campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
-        public DateTime? Idade { get; set; }
         public string Telefone { get; set; }
         public string Celular { get; set; }
+        public string Email { get; set; }
     
         public virtual Endereco Endereco { get; set; }
         public virtual ICollection<ParticipantesGrupo> ParticipantesGrupoes { get; set; }

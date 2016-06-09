@@ -33,6 +33,14 @@
                 </div>
 
                 <div class="editor-label">
+                    @Html.LabelFor(model => model.UnidadeMedida)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.UnidadeMedida, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UnidadeMedida)
+                </div>
+
+                <div class="editor-label">
                     @Html.LabelFor(model => model.Link)
                 </div>
                 <div class="editor-field">

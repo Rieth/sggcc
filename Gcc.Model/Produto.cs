@@ -11,7 +11,8 @@ namespace Gcc.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Produto
     {
         public Produto()
@@ -19,14 +20,16 @@ namespace Gcc.Models
             this.Caracteristicas = new HashSet<Caracteristica>();
             this.ProdutoRequeridoes = new HashSet<ProdutoRequerido>();
         }
-    
+
         public long ProdutoID { get; set; }
         public Nullable<long> GrupoID { get; set; }
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public string Link { get; set; }
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
         public string UnidadeMedida { get; set; }
-    
+
         public virtual ICollection<Caracteristica> Caracteristicas { get; set; }
         public virtual Grupo Grupo { get; set; }
         public virtual ICollection<ProdutoRequerido> ProdutoRequeridoes { get; set; }
