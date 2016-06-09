@@ -19,7 +19,7 @@ namespace Gcc.Web.Controllers
 
         public GrupoController()
         {
-            visibilidades.Add(new SelectListItem { Text = "Pública", Value = "0" , Selected = true});
+            visibilidades.Add(new SelectListItem { Text = "Pública", Value = "0", Selected = true });
             visibilidades.Add(new SelectListItem { Text = "Privada", Value = "1" });
             visibilidades.Add(new SelectListItem { Text = "Só amigos", Value = "2" });
 
@@ -33,6 +33,7 @@ namespace Gcc.Web.Controllers
             return View(grupos);
         }
 
+        [Authorize]
         public ActionResult Detalhes(long id = 0)
         {
             Grupo grupo = db.Grupoes.Find(id);
@@ -45,11 +46,13 @@ namespace Gcc.Web.Controllers
             return View(grupo);
         }
 
+        [Authorize]
         public ActionResult Criar()
         {
             return View("Criar", new Grupo());
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Criar(Grupo grupo)
@@ -63,9 +66,9 @@ namespace Gcc.Web.Controllers
                         db.Grupoes.Add(grupo);
                         db.SaveChanges();
 
-                        //string permissaoEditar = "EDITAR_GRUPO_" + grupo.GrupoID;
-                        //Roles.CreateRole(permissaoEditar);
-                        //Roles.AddUserToRole(User.Identity.Name, permissaoEditar);
+                        string permissaoEditar = "EDITAR_GRUPO_" + grupo.GrupoID;
+                        Roles.CreateRole(permissaoEditar);
+                        Roles.AddUserToRole(User.Identity.Name, permissaoEditar);
 
                         return RedirectToAction("Index");
                     }
@@ -80,6 +83,7 @@ namespace Gcc.Web.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Editar(long id = 0)
         {
             //if (User.IsInRole("EDITAR_GRUPO_" + id))
@@ -93,6 +97,7 @@ namespace Gcc.Web.Controllers
             //return View("Index");
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Editar(Grupo grupo)
@@ -149,7 +154,7 @@ namespace Gcc.Web.Controllers
         }
 
 
-        
+
 
         //
         // GET: /Grupo/Delete/5

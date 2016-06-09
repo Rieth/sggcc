@@ -213,7 +213,6 @@
     <Compile Include="Controllers\EnqueteController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
-    <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Data\DataLayerEntityFramework\GccContext.cs" />
     <Compile Include="Data\DataLayerEntityFramework\Repository.cs" />
     <Compile Include="Data\DataLayerAbstraction\IRepository.cs" />
@@ -227,6 +226,19 @@
     </Compile>
     <Compile Include="Helpers\HtmlClientSideValidationExtensions.cs" />
     <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
+    <Compile Include="Migrations\201604181840515_InitialCreate.cs" />
+    <Compile Include="Migrations\201604181840515_InitialCreate.Designer.cs">
+      <DependentUpon>201604181840515_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606082351120_AlteracoesProduto.cs" />
+    <Compile Include="Migrations\201606082351120_AlteracoesProduto.Designer.cs">
+      <DependentUpon>201606082351120_AlteracoesProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606090030403_AlteracaoDateTime.cs" />
+    <Compile Include="Migrations\201606090030403_AlteracaoDateTime.Designer.cs">
+      <DependentUpon>201606090030403_AlteracaoDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -348,7 +360,7 @@
     <Content Include="Views\Grupo\Card.cshtml" />
     <Content Include="Views\Produto\Card.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
-    <Content Include="Views\Cliente\EditarInformacoes.cshtml" />
+    <Content Include="Views\Cliente\Perfil.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Shared\_CriarCaracteristica.cshtml" />
     <Content Include="Views\Shared\_CriarAlternativa.cshtml" />
@@ -377,6 +389,17 @@
       <Project>{b2db9b1f-9ad2-4008-aa1b-ac16cb0f381d}</Project>
       <Name>Gcc.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604181840515_InitialCreate.resx">
+      <DependentUpon>201604181840515_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606082351120_AlteracoesProduto.resx">
+      <DependentUpon>201606082351120_AlteracoesProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606090030403_AlteracaoDateTime.resx">
+      <DependentUpon>201606090030403_AlteracaoDateTime.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

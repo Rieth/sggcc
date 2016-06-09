@@ -9,6 +9,7 @@
             if (Model.ProdutoRequeridoID != 0)
             {
                 @Html.HiddenFor(model => model.ProdutoRequeridoID)
+                @Html.HiddenFor(model => model.ClienteID)
             }
 
             @Html.AntiForgeryToken()

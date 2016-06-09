@@ -19,7 +19,6 @@ namespace Gcc.Models
         public Nullable<long> ClienteID { get; set; }
         public Nullable<long> GrupoID { get; set; }
         public int Quantidade { get; set; }
-        public string UnidadeMedida { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual Grupo Grupo { get; set; }

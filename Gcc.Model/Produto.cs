@@ -25,6 +25,7 @@ namespace Gcc.Models
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public string Link { get; set; }
+        public string UnidadeMedida { get; set; }
     
         public virtual ICollection<Caracteristica> Caracteristicas { get; set; }
         public virtual Grupo Grupo { get; set; }

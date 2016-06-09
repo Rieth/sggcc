@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Gcc.Filters;
 using Gcc.Models;
+using Gcc.Data.DataLayerEntityFramework;
 
 namespace Gcc.Web.Controllers
 {
@@ -80,7 +81,19 @@ namespace Gcc.Web.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);                    
+                    WebSecurity.Login(model.UserName, model.Password);
+
+                    //aqui
+                    UserProfile user = null;
+
+                    using (UsersContext db = new UsersContext())
+                    {                        
+                        user = db.UserProfiles.FirstOrDefault(u => u.UserName == model.UserName);                        
+                    }
+
+                    CriarCliente(user.UserId, user.UserName);
+                    //aqui
+
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
@@ -271,6 +284,10 @@ namespace Gcc.Web.Controllers
                     {
                         // Insert name into the profile table
                         db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+
+                        //aqui
+                        CriarCliente(user.UserId, user.UserName);
+
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
@@ -403,5 +420,18 @@ namespace Gcc.Web.Controllers
             }
         }
         #endregion
+
+        public void CriarCliente(int userID, string userName)
+        {
+            using (GccContext db = new GccContext())
+            {
+                Cliente cliente = new Cliente();
+                cliente.UserId = userID;
+                cliente.Nome = userName;
+
+                db.Clientes.Add(cliente);
+                db.SaveChanges();
+            }
+        }
     }
 }

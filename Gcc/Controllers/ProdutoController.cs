@@ -7,9 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using Gcc.Models;
 using Gcc.Data.DataLayerEntityFramework;
+using Gcc.Filters;
+using WebMatrix.WebData;
 
 namespace Gcc.Web.Controllers
 {
+    [InitializeSimpleMembership]
     public class ProdutoController : Controller
     {
         private GccContext db = new GccContext();
@@ -19,6 +22,7 @@ namespace Gcc.Web.Controllers
             return View(db.Produtoes.ToList());
         }
 
+        [Authorize]
         public PartialViewResult AdicionarCaracteristica()
         {
             var model = new Caracteristica();
@@ -26,6 +30,7 @@ namespace Gcc.Web.Controllers
             return PartialView("_CriarCaracteristica", model);
         }
 
+        [Authorize]
         public PartialViewResult Card()
         {
             var model = new Produto();
@@ -33,9 +38,10 @@ namespace Gcc.Web.Controllers
             return PartialView("Card", model);
         }
 
+        [Authorize]
         public ActionResult Detalhes(long id = 0)
         {
-            Produto produto = db.Produtoes.Find(id);            
+            Produto produto = db.Produtoes.Find(id);
 
             if (produto == null)
             {
@@ -44,31 +50,48 @@ namespace Gcc.Web.Controllers
             return View(produto);
         }
 
+        [Authorize]
         public ActionResult RequisitarProduto(long id = 0)
         {
             Produto produto = db.Produtoes.Find(id);
+            ProdutoRequerido produtoRequerido = db.ProdutoRequeridoes.Where(pr => pr.ProdutoID == produto.ProdutoID).SingleOrDefault();
+
 
             if (produto == null)
             {
                 return HttpNotFound();
             }
 
-            ProdutoRequerido produtoRequerido = new ProdutoRequerido();
-            produtoRequerido.Produto = produto;
-            produtoRequerido.GrupoID = produto.GrupoID;
-            produtoRequerido.ProdutoID = produto.ProdutoID;
-            produtoRequerido.Quantidade = 0;
+            if (produtoRequerido == null)
+            {
+                produtoRequerido = new ProdutoRequerido();
+                produtoRequerido.Produto = produto;
+                produtoRequerido.GrupoID = produto.GrupoID;
+                produtoRequerido.ProdutoID = produto.ProdutoID;
+                produtoRequerido.ClienteID = db.Clientes.Where(c => c.UserId == WebSecurity.GetUserId(User.Identity.Name)).Select(cl => cl.ClienteID).FirstOrDefault();
+
+            }
 
             return View(produtoRequerido);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RequisitarProduto(ProdutoRequerido produtoRequerido)
         {
             if (ModelState.IsValid)
             {
-                db.ProdutoRequeridoes.Add(produtoRequerido);
+                if (produtoRequerido.ProdutoRequeridoID == 0)
+                {
+                    db.ProdutoRequeridoes.Add(produtoRequerido);
+                }
+                else
+                {
+                    db.Entry(produtoRequerido).State = EntityState.Modified;
+                }
+
+
                 db.SaveChanges();
 
                 return RedirectToAction("Detalhes", "Grupo", new { id = produtoRequerido.GrupoID });
@@ -77,6 +100,7 @@ namespace Gcc.Web.Controllers
             return View(produtoRequerido);
         }
 
+        [Authorize]
         public ActionResult Criar(int id)
         {
             Grupo grupo = db.Grupoes.Where(g => g.GrupoID == id).FirstOrDefault();
@@ -88,6 +112,7 @@ namespace Gcc.Web.Controllers
             return View(produto);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Criar(Produto produto)
@@ -103,6 +128,7 @@ namespace Gcc.Web.Controllers
             return View(produto);
         }
 
+        [Authorize]
         public ActionResult Editar(long id = 0)
         {
             Produto produto = db.Produtoes.Find(id);
@@ -113,6 +139,7 @@ namespace Gcc.Web.Controllers
             return View(produto);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Editar(Produto produto)

@@ -25,7 +25,7 @@ namespace Gcc.Models
         public Nullable<long> EnderecoID { get; set; }
         public Nullable<long> UserId { get; set; }
         public string Nome { get; set; }
-        public System.DateTime Idade { get; set; }
+        public DateTime? Idade { get; set; }
         public string Telefone { get; set; }
         public string Celular { get; set; }
     

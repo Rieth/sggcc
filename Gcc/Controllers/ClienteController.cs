@@ -45,18 +45,13 @@ namespace Gcc.Web.Controllers
         // GET: /Cliente/Create
 
         [Authorize]
-        public ActionResult EditarInformacoes()
+        public ActionResult Perfil()
         {
-            Cliente cliente;
+            Cliente cliente = db.Clientes.Where(c => c.UserId == WebSecurity.CurrentUserId).FirstOrDefault();
 
-            if (WebSecurity.Initialized)
+            if (cliente != null)
             {
-                cliente = db.Clientes.Where(c => c.UserId == WebSecurity.CurrentUserId).FirstOrDefault();
-
-                if (cliente != null)
-                {
-                    return View(cliente);
-                }
+                return View(cliente);
             }
 
             return View();
@@ -65,26 +60,21 @@ namespace Gcc.Web.Controllers
         //
         // POST: /Cliente/Create
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarInformacoes(Cliente cliente)
+        public ActionResult Perfil(Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                cliente.UserId = WebSecurity.CurrentUserId;
-
-                if (cliente.ClienteID == 0)
-                {
-                    db.Clientes.Add(cliente);
-                }else
-                    db.Entry(cliente).State = EntityState.Modified;
-
+                db.Entry(cliente).State = EntityState.Modified;
 
                 db.SaveChanges();
+
                 return RedirectToAction("Index", "Grupo");
             }
             return View(cliente);
-        }        
+        }
 
         protected override void Dispose(bool disposing)
         {
