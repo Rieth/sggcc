@@ -1,64 +1,69 @@
 ﻿@model Gcc.Models.ProdutoRequerido
 
 
-<div class="modal-dialog">
-    <div class="modal-content">
-        @using (Html.BeginForm("RequisitarProduto", "Produto"))
-        {
+@*<div class="modal-dialog">
+    <div class="modal-content">*@
+@using (Html.BeginForm("RequisitarProduto", "Produto"))
+{
 
-            if (Model.ProdutoRequeridoID != 0)
-            {
-                @Html.HiddenFor(model => model.ProdutoRequeridoID)
-                @Html.HiddenFor(model => model.ClienteID)
-            }
+    if (Model.ProdutoRequeridoID != 0)
+    {
+        @Html.HiddenFor(model => model.ProdutoRequeridoID)
+        @Html.HiddenFor(model => model.ClienteID)
+    }
 
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 
-            @Html.HiddenFor(model => model.GrupoID)
-            @Html.HiddenFor(model => model.ClienteID)
-            @Html.HiddenFor(model => model.ProdutoID)
+    @Html.HiddenFor(model => model.GrupoID)
+    @Html.HiddenFor(model => model.ClienteID)
+    @Html.HiddenFor(model => model.ProdutoID)
 
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Requisitar</h4>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="form-group top15 col-lg-6 col-md-6 col-xs-12">
-                        <div class="form-group">
-                            <div class="display-field">
-                                @Html.DisplayFor(model => model.Produto.Nome)
-                            </div>
-                        </div>
+    @*<div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Requisitar</h4>
+        </div>
+        <div class="modal-body">*@
+    <div class="container">
+        <div class="row">
+            <div class="form-group top15 col-lg-6 col-md-6 col-xs-12">
+                <div class="form-group">
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Produto.Nome)
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <div class="display-field">
-                                @Html.DisplayFor(model => model.Produto.Descricao)
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Produto.Descricao)
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <div class="display-field">
-                                @Html.DisplayFor(model => model.Produto.Link)
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Produto.Link)
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <div class="editor-label">
-                                @Html.LabelFor(model => model.Quantidade) (@Html.DisplayFor(model => model.Produto.UnidadeMedida))
-                            </div>
-                            <div class="editor-field">
-                                @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control" })
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Quantidade) (@Html.DisplayFor(model => model.Produto.UnidadeMedida))
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control" })
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-success" data-dismiss="modal" value="RequisitarProduto">Requisitar</button>
-            </div>
-        }
+        </div>
+
+        @*</div>
+            <div class="modal-footer">*@
+        <div class="row">
+            <button type="submit" class="btn btn-success" value="RequisitarProduto">Requisitar</button>
+        </div>
     </div>
-</div>
+    @*</div>*@
+}
+@*</div>
+    </div>*@

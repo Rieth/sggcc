@@ -12,9 +12,9 @@ namespace Gcc.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ParticipantesGrupo
+    public partial class ParticipanteGrupo
     {
-        public long ParticipantesGrupoID { get; set; }
+        public long ParticipanteGrupoID { get; set; }
         public Nullable<long> GrupoID { get; set; }
         public Nullable<long> ClienteID { get; set; }
     

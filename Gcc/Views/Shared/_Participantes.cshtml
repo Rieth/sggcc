@@ -1,0 +1,25 @@
+﻿@model List<Gcc.Models.ParticipanteGrupo>
+
+<fieldset>
+    <legend>ParticipantesGrupo</legend>
+
+    @foreach (var pg in Model) { 
+    <div class="display-label">
+         @Html.DisplayNameFor(model => pg.GrupoID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => pg.GrupoID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => pg.ClienteID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => pg.ClienteID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = pg.ParticipanteGrupoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+    }

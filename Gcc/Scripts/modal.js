@@ -15,6 +15,13 @@
         })
     });
 
+    $(document).on('click', '.close-modal', function () {
+        var modalDiv = $(this).parents('div').find('.modal-dialog');
+
+        modalDiv.modal().hide();
+
+    });
+
 
     $(document).on('click', '.open-modal-next', function () {
         $(this).next('.my-modal').modal();

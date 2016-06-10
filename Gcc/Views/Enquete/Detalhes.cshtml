@@ -1,10 +1,10 @@
-﻿@model Gcc.Models.Produto
+﻿@model Gcc.Models.Enquete
 
 @{
     ViewBag.Title = "Detalhes";
 }
 
-<h2>Detalhes Produto</h2>
+<h2>Detalhes Enquete</h2>
 @*<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -29,25 +29,14 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.UnidadeMedida)
+            <h3>Total de votos</h3>
         </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.UnidadeMedida, new { @class = "form-control" })
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Link)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Link, new { @class = "form-control" })
-        </div>
-
-        <div class="editor-label">
-            <label>Quantidade Requerida</label>
-        </div>
-        <div class="display-field">
-            @Model.ProdutoRequeridoes.Sum(pr => pr.Quantidade)             @*aqui: criar viewmodel*@
-        </div>
+        @foreach (var a in Model.Alternativas)
+        {
+            <div class="editor-label">
+                <label>@a.Valor: </label> @a.Votoes.Count()@*aqui: criar viewmodel*@
+            </div>
+        }
 
 
     </div>

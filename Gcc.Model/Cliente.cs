@@ -17,7 +17,7 @@ namespace Gcc.Models
     {
         public Cliente()
         {
-            this.ParticipantesGrupoes = new HashSet<ParticipantesGrupo>();
+            this.ParticipantesGrupoes = new HashSet<ParticipanteGrupo>();
             this.ProdutoRequeridoes = new HashSet<ProdutoRequerido>();
             this.Votoes = new HashSet<Voto>();
         }
@@ -32,7 +32,7 @@ namespace Gcc.Models
         public string Email { get; set; }
     
         public virtual Endereco Endereco { get; set; }
-        public virtual ICollection<ParticipantesGrupo> ParticipantesGrupoes { get; set; }
+        public virtual ICollection<ParticipanteGrupo> ParticipantesGrupoes { get; set; }
         public virtual ICollection<ProdutoRequerido> ProdutoRequeridoes { get; set; }
         public virtual ICollection<Voto> Votoes { get; set; }
     }

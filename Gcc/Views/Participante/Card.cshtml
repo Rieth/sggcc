@@ -1,0 +1,28 @@
+﻿@model Gcc.Models.ParticipanteGrupo
+
+@{ var id = Guid.NewGuid().ToString(); }
+
+@using Gcc.Web.Helpers
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginCollectionItem("ParticipanteGrupoes"))
+{
+    @Html.HiddenFor(model => model.ParticipanteGrupoID)
+
+    @*<div class="modal" id="modal">
+
+    </div>*@
+
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="card">
+            <img class="card-img-top" height="200" src="https://image.freepik.com/icones-gratis/silhueta-usuario-masculino_318-35708.jpg" alt="Usuário Logo">
+            <div class="card-block">
+                <h4 class="card-title">@Model.Cliente.Nome</h4>
+                <button type="button" class="open-modal btn btn-success btn-block" onclick="location.href='@Url.Action("Detalhes", "Participante", new { id = @Model.ParticipanteGrupoID })';">Detalhes</button>
+            </div>
+        </div>
+    </div>
+}

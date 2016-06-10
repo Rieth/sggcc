@@ -12,21 +12,23 @@ namespace Gcc.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Enquete
     {
         public Enquete()
         {
             this.Alternativas = new HashSet<Alternativa>();
+            this.Votos = new HashSet<Voto>();
         }
-    
+
         public long EnqueteID { get; set; }
         public Nullable<long> GrupoID { get; set; }
-                [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
         public string Descricao { get; set; }
-    
+
         public virtual ICollection<Alternativa> Alternativas { get; set; }
+        public virtual ICollection<Voto> Votos { get; set; }
         public virtual Grupo Grupo { get; set; }
     }
 }

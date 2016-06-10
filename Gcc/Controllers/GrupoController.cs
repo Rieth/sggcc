@@ -9,6 +9,7 @@ using Gcc.Models;
 using Gcc.Data.DataLayerEntityFramework;
 using System.Web.Security;
 using Gcc.Filters;
+using WebMatrix.WebData;
 
 namespace Gcc.Web.Controllers
 {
@@ -64,6 +65,14 @@ namespace Gcc.Web.Controllers
                 db.Grupoes.Add(grupo);
                 db.SaveChanges();
 
+                Cliente cliente = db.Clientes.Where(c => c.UserId == WebSecurity.CurrentUserId).FirstOrDefault();
+
+                ParticipanteGrupo participante = new ParticipanteGrupo();
+                participante.GrupoID = grupo.GrupoID;
+                participante.ClienteID = cliente.ClienteID;
+
+                db.SaveChanges();
+
                 string permissaoEditar = "EDITAR_GRUPO_" + grupo.GrupoID;
                 Roles.CreateRole(permissaoEditar);
                 Roles.AddUserToRole(User.Identity.Name, permissaoEditar);
@@ -115,8 +124,20 @@ namespace Gcc.Web.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Participar(Grupo grupo)
+        {
+            Cliente cliente = db.Clientes.Where(c => c.UserId == WebSecurity.CurrentUserId).FirstOrDefault();
 
+            ParticipanteGrupo participante = new ParticipanteGrupo();
+            participante.GrupoID = grupo.GrupoID;
+            participante.ClienteID = cliente.ClienteID;
+            db.ParticipanteGrupoes.Add(participante);
 
+            db.SaveChanges();
+            //aqui
+            return View("Detalhes", grupo);
+        }
 
         //
         // GET: /Grupo/Delete/5

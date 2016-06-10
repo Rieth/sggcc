@@ -23,7 +23,7 @@ namespace Gcc.Data.DataLayerEntityFramework
         public DbSet<Enquete> Enquetes { get; set; }
         public DbSet<Grupo> Grupoes { get; set; }
         public DbSet<Produto> Produtoes { get; set; }
-        public DbSet<ParticipantesGrupo> ParticipanteGrupoes { get; set; }
+        public DbSet<ParticipanteGrupo> ParticipanteGrupoes { get; set; }
         public DbSet<ProdutoRequerido> ProdutoRequeridoes { get; set; }
         public DbSet<Voto> Votoes { get; set; }
 

@@ -212,6 +212,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EnqueteController.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
+    <Compile Include="Controllers\ParticipanteController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Data\DataLayerEntityFramework\GccContext.cs" />
     <Compile Include="Data\DataLayerEntityFramework\Repository.cs" />
@@ -245,6 +246,14 @@
     <Compile Include="Migrations\201606091811579_AdicionadoValidacoes.cs" />
     <Compile Include="Migrations\201606091811579_AdicionadoValidacoes.Designer.cs">
       <DependentUpon>201606091811579_AdicionadoValidacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606101728101_AdicionadoEnqueteNoVoto.cs" />
+    <Compile Include="Migrations\201606101728101_AdicionadoEnqueteNoVoto.Designer.cs">
+      <DependentUpon>201606101728101_AdicionadoEnqueteNoVoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606101734141_RenomeadoClasseParticipanteGrupo.cs" />
+    <Compile Include="Migrations\201606101734141_RenomeadoClasseParticipanteGrupo.Designer.cs">
+      <DependentUpon>201606101734141_RenomeadoClasseParticipanteGrupo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -366,9 +375,7 @@
     <Content Include="Views\Grupo\Criar.cshtml" />
     <Content Include="Views\Grupo\Card.cshtml" />
     <Content Include="Views\Produto\Card.cshtml" />
-    <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Perfil.cshtml" />
-    <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Shared\_CriarCaracteristica.cshtml" />
     <Content Include="Views\Shared\_CriarAlternativa.cshtml" />
     <Content Include="Views\Enquete\Card.cshtml" />
@@ -382,6 +389,10 @@
     <Content Include="Views\Shared\AcessoNegado.cshtml" />
     <Content Include="Views\Produto\Detalhes.cshtml" />
     <Content Include="Views\Enquete\Votar.cshtml" />
+    <Content Include="Views\Shared\_Participantes.cshtml" />
+    <Content Include="Views\Participante\Card.cshtml" />
+    <Content Include="Views\Enquete\Detalhes.cshtml" />
+    <Content Include="Views\Participante\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -415,6 +426,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606091811579_AdicionadoValidacoes.resx">
       <DependentUpon>201606091811579_AdicionadoValidacoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606101728101_AdicionadoEnqueteNoVoto.resx">
+      <DependentUpon>201606101728101_AdicionadoEnqueteNoVoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606101734141_RenomeadoClasseParticipanteGrupo.resx">
+      <DependentUpon>201606101734141_RenomeadoClasseParticipanteGrupo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

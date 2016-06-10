@@ -17,8 +17,10 @@ namespace Gcc.Models
         public long VotoID { get; set; }
         public Nullable<long> ClienteID { get; set; }
         public Nullable<long> AlternativaID { get; set; }
+        public Nullable<long> EnqueteID { get; set; }
     
         public virtual Alternativa Alternativa { get; set; }
+        public virtual Enquete Enquete { get; set; }
         public virtual Cliente Cliente { get; set; }
     }
 }

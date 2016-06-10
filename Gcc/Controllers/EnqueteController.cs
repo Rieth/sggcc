@@ -100,10 +100,16 @@ namespace Gcc.Web.Controllers
             return View(enquete);
         }
 
+        //aqui: criar classe
         public class AlternativaViewModel
         {
             public Alternativa Alternativa { get; set; }
             public bool Votada { get; set; }
+
+            public AlternativaViewModel()
+            {
+
+            }
 
             public AlternativaViewModel(Alternativa alternativa, bool votada)
             {
@@ -146,28 +152,49 @@ namespace Gcc.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Votar(List<AlternativaViewModel> alternativasVM)
         {
-            int userID = WebSecurity.GetUserId(User.Identity.Name);
-            Cliente cliente = db.Clientes.Where(c => c.UserId == userID).FirstOrDefault();
-
-            foreach (AlternativaViewModel avm in alternativasVM)
+            if (ModelState.IsValid)
             {
-                db.Database.ExecuteSqlCommand("DELETE FROM VOTO WHERE ClienteID= {0} AND AlternativaID= {1}", cliente.ClienteID, avm.Alternativa.AlternativaID);
+                int userID = WebSecurity.GetUserId(User.Identity.Name);
+                Cliente cliente = db.Clientes.Where(c => c.UserId == userID).FirstOrDefault();
+
+                foreach (AlternativaViewModel avm in alternativasVM)
+                {
+                    db.Database.ExecuteSqlCommand("DELETE FROM VOTO WHERE ClienteID= {0} AND AlternativaID= {1}", cliente.ClienteID, avm.Alternativa.AlternativaID);
+                }
+
+                foreach (AlternativaViewModel avm in alternativasVM)
+                {
+                    if (avm.Votada)
+                    {
+                        Voto voto = new Voto();
+                        voto.AlternativaID = avm.Alternativa.AlternativaID;
+                        voto.EnqueteID = avm.Alternativa.EnqueteID;
+                        voto.ClienteID = cliente.ClienteID;
+
+                        db.Votoes.Add(voto);
+                    }                    
+                }
+                
+                db.SaveChanges();
+
+                return View("../Home/Index");
             }
 
-            Alternativa votada = alternativasVM.Where(avm => avm.Votada == true).Select(a => a.Alternativa).SingleOrDefault();
-
-            Voto voto = new Voto();
-            voto.AlternativaID = votada.AlternativaID;
-            voto.ClienteID = cliente.ClienteID;
-
-            db.Votoes.Add(voto);
-
-            db.SaveChanges();
-
-
-            return View();
+            return View(alternativasVM);
             //return RedirectToAction("Detalhes", "Grupo", new { id = .GrupoID });
 
+        }
+
+        [Authorize]
+        public ActionResult Detalhes(long id = 0)
+        {
+            Enquete enquete = db.Enquetes.Find(id);
+
+            if (enquete == null)
+            {
+                return HttpNotFound();
+            }
+            return View(enquete);
         }
 
         protected override void Dispose(bool disposing)

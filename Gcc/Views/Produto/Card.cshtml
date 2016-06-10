@@ -11,87 +11,20 @@
 {
     @Html.HiddenFor(model => model.ProdutoID)
 
-    <div class="modal" id="modal">
+    @*<div class="modal" id="modal">
 
-    </div>
+    </div>*@
 
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="card">
             <img class="card-img-top" height="200" src="http://macbook.nl/wp-content/themes/macbook/images/png/iphone318x180.png" alt="Grupo Logo">
             <div class="card-block">
                 <h4 class="card-title">@Model.Nome</h4>
-                <button type="button" class="open-modal btn btn-danger btn-block" data-path="/Produto/RequisitarProduto/@Model.ProdutoID">Requisitar Produto</button>
-                <button type="button" class="open-modal btn btn-success btn-block" data-path="/Produto/Detalhes/@Model.ProdutoID">Detalhes</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Produto", new { id = @Model.ProdutoID })';">Editar</button>
-                    @*<button type="button" class="open-modal-next btn btn-success btn-block">Informações</button>
-                    <div class="my-modal modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Informações Gerais</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group-sm-3">
-                                        <div class="editor-label">
-                                            @Html.LabelFor(model => model.Nome)
-                                        </div>
-                                        <div class="editor-field">
-                                            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.Nome)
-                                        </div>
-
-                                        <div class="editor-label">
-                                            @Html.LabelFor(model => model.Descricao)
-                                        </div>
-                                        <div class="editor-field">
-                                            @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.Descricao)
-                                        </div>
-
-                                        <div class="editor-label">
-                                            @Html.LabelFor(model => model.Link)
-                                        </div>
-                                        <div class="editor-field">
-                                            @Html.TextBoxFor(model => model.Link, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.Link)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="button" class="open-modal-next btn btn-primary btn-block">Características</button>
-                    <div class="my-modal modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Informações Gerais</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row Caracteristicas">
-                                        @foreach (var caracteristica in Model.Caracteristicas)
-                                        {                                            
-                                            @Html.Partial("_CriarCaracteristica", caracteristica);
-                                        }
-                                    </div>
-                                    <div class="row top30">
-                                        <button type="button" class="add btn btn-primary" data-containerprefix="@ViewData["containerprefix"]]" data-divname="Caracteristicas" data-url="/Produto/CriarCaracteristica">Criar Caracteristica</button>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
+                <button type="button" class="btn btn-danger btn-block" onclick="location.href='@Url.Action("RequisitarProduto", "Produto", new { id = @Model.ProdutoID })';">Requisitar Produto</button>
+                <button type="button" class="btn btn-success btn-block" onclick="location.href='@Url.Action("Detalhes", "Produto", new { id = @Model.ProdutoID })';">Detalhes</button>
+                @*<button type="button" class="open-modal btn btn-danger btn-block" data-path="/Produto/RequisitarProduto/@Model.ProdutoID">Requisitar Produto</button>
+                <button type="button" class="open-modal btn btn-success btn-block" data-path="/Produto/Detalhes/@Model.ProdutoID">Detalhes</button>*@
+                <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Produto", new { id = @Model.ProdutoID })';">Editar</button> 
             </div>
         </div>
     </div>

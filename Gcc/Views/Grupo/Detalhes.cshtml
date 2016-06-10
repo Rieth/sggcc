@@ -4,145 +4,117 @@
     ViewBag.Title = "Grupo";
 }
 
-<div class="container">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
+@using (Html.BeginForm("Participar", "Grupo"))
+{
+    @Html.HiddenFor(model => model.GrupoID)
+
+    <div class="container">
+        <div class="row">
+            <button class="btn btn-success" type="submit" value="Participar">Participar</button>
             <h1 class="display-3">@Model.Nome</h1>
-            <p class="lead">@Model.Descricao.</p>
+            <p class="lead">@Model.Descricao</p>
         </div>
-    </div>
 
 
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-target="#tabGrupo" data-toggle="tab">Grupo</a></li>
-        <li><a data-target="#tabGrupoProdutos" data-toggle="tab">Produtos</a></li>
-        <li><a data-target="#tabGrupoEnquetes" data-toggle="tab">Enquetes</a></li>
-    </ul>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-target="#tabGrupo" data-toggle="tab">Grupo</a></li>
+            <li><a data-target="#tabGrupoProdutos" data-toggle="tab">Produtos</a></li>
+            <li><a data-target="#tabGrupoEnquetes" data-toggle="tab">Enquetes</a></li>
+            <li><a data-target="#tabGrupoParticipantes" data-toggle="tab">Participantes</a></li>
+        </ul>
 
-    <div class="row">
-        <div class="tab-content">
-            <div class="tab-pane active" id="tabGrupo">
-                <div class="form-group top15 col-lg-6 col-md-6 col-xs-12">
-                    <div class="display-label">
-                        <label><span class="label label-info">Nome</span></label>
-                    </div>
-                    <div class="display-field">
-                        <label>@Model.Nome</label>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Descrição</span></label>
+        <div class="row">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabGrupo">
+                    <div class="form-group top15 col-lg-6 col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Nome): </b>
+                            @Html.DisplayFor(model => model.Nome)
                         </div>
-                        <div class="display-field">
+
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Descricao): </b>
                             @Html.DisplayFor(model => model.Descricao)
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Email</span></label>
-                        </div>
-                        <div class="display-field">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Email): </b>
                             @Html.DisplayFor(model => model.Email)
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Telefone</span></label>
-                        </div>
-                        <div class="display-field">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Telefone): </b>
                             @Html.DisplayFor(model => model.Telefone)
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Celular</span></label>
-                        </div>
-                        <div class="display-field">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Celular): </b>
                             @Html.DisplayFor(model => model.Celular)
                         </div>
                     </div>
-                </div>
-                <div class="form-group top15 col-lg-6 col-md-6 col-xs-12">
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">CEP</span></label>
-                        </div>
-                        <div class="display-field">
+                    <div class="form-group top15 col-lg-6 col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Endereco.CEP): </b>
                             @Html.DisplayFor(model => model.Endereco.CEP)
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Estado</span></label>
-                        </div>
-                        <div class="display-field">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Endereco.Estado): </b>
                             @Html.DisplayFor(model => model.Endereco.Estado)
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Cidade</span></label>
-                        </div>
-                        <div class="display-field">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Endereco.Cidade): </b>
                             @Html.DisplayFor(model => model.Endereco.Cidade)
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Bairro</span></label>
-                        </div>
-                        <div class="display-field">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Endereco.Bairro): </b>
                             @Html.DisplayFor(model => model.Endereco.Bairro)
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Rua</span></label>
-                        </div>
-                        <div class="display-field">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Endereco.Rua): </b>
                             @Html.DisplayFor(model => model.Endereco.Rua)
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="display-label">
-                            <label><span class="label label-info">Número</span></label>
-                        </div>
-                        <div class="display-field">
+                        <div class="form-group">
+                            <b>@Html.DisplayNameFor(model => model.Endereco.Numero): </b>
                             @Html.DisplayFor(model => model.Endereco.Numero)
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane" id="tabGrupoProdutos">
-                <div class="row top30 produtos">
-                    @foreach (var produto in Model.Produtoes)
-                    {
-                        @Html.Partial("~/Views/Produto/Card.cshtml", produto)
-                    }
+
+                <div class="tab-pane" id="tabGrupoProdutos">
+                    <div class="row top30 produtos">
+                        @foreach (var produto in Model.Produtoes)
+                        {
+                            @Html.Partial("~/Views/Produto/Card.cshtml", produto)
+                        }
+                    </div>
                 </div>
-            </div>
-            <div class="tab-pane" id="tabGrupoEnquetes">
-                <div class="row top30 enquetes">
-                    @foreach (var enquete in Model.Enquetes)
-                    {
-                        @Html.Partial("~/Views/Enquete/Card.cshtml", enquete)
-                    }
+                <div class="tab-pane" id="tabGrupoEnquetes">
+                    <div class="row top30 enquetes">
+                        @foreach (var enquete in Model.Enquetes)
+                        {
+                            @Html.Partial("~/Views/Enquete/Card.cshtml", enquete)
+                        }
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabGrupoParticipantes">
+                    <div class="row top30 participantes">
+                        @foreach (var participante in Model.ParticipantesGrupoes)
+                        {
+                            @Html.Partial("~/Views/Participante/Card.cshtml", participante)
+                        }
+                    </div>
                 </div>
             </div>
         </div>
+
+
     </div>
-
-</div>
-
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
