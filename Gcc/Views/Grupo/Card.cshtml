@@ -1,11 +1,5 @@
 ﻿@model Gcc.Models.Grupo
 
-<meta property="og:url" content="http://www.your-domain.com/your-page.html" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Your Website Title" />
-<meta property="og:description" content="Your description" />
-<meta property="og:image" content="http://www.your-domain.com/path/image.jpg" />
-
 <div class="col-md-4 col-lg-4 col-sm-4">
     <div class="card">
         <img class="card-img-top" height="200" src="http://downloadicons.net/sites/default/files/user-group-icon-80286.png" alt="Grupo Logo">
@@ -14,8 +8,7 @@
             <p class="card-text">@Model.Descricao</p>
             <button type="button" class="btn btn-success btn-block" onclick="location.href='@Url.Action("Detalhes", "Grupo", new { id = @Model.GrupoID })';">Detalhes</button>
             <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Grupo", new { id = @Model.GrupoID })';">Editar</button>
-            <button type="button" id ="share_button" class="btn btn-success btn-block">Compartilhar</button>
-                    
+            <div style="padding-top:5px;" class="fb-share-button" data-href="http://sggcc.azurewebsites.net/Grupo/Detalhes/@Model.GrupoID" data-layout="button_count" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartilhar</a></div>
         </div>
     </div>
 </div>

@@ -1,18 +1,40 @@
 ﻿@model Gcc.Models.RegisterExternalLoginModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registrar com conta externa";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
-    <h2>Associate your @ViewBag.ProviderDisplayName account.</h2>
+    <h4>Associar sua conta do @ViewBag.ProviderDisplayName</h4>
 </hgroup>
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
+    <div class="row">
+        <div class="col-md-4 col-lg-4"></div>
+        <h2 class="form-signin-heading col-md-4 col-lg-4 text-center">Alterar Senha</h2>
+        <div class="col-md-4 col-lg-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-lg-4"></div>
+        <div class="form-group col-md-4 col-lg-4">
+            <label>Nome</label>
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+        <div class="col-md-4 col-lg-4"></div>
+    </div>    
+    <div class="row">
+        <div class="col-md-4 col-lg-4"></div>
+        <div class="form-group col-md-4 col-lg-4">
+            <button class="btn btn-lg btn-success btn-block" type="submit">Registrar</button>
+        </div>
+        <div class="col-md-4 col-lg-4"></div>
+    </div>
+
+    @*<fieldset>
         <legend>Association Form</legend>
         <p>
             Você se autenticou com <strong>@ViewBag.ProviderDisplayName</strong>.
@@ -24,10 +46,10 @@
                 @Html.TextBoxFor(m => m.UserName)
                 @Html.ValidationMessageFor(m => m.UserName)
             </li>
-        </ol>
+        </ol>*@
         @Html.HiddenFor(m => m.ExternalLoginData)
-        <input type="submit" value="Registrar" />
-    </fieldset>
+        @*<input type="submit" value="Registrar" />
+    </fieldset>*@
 }
 
 @section Scripts {

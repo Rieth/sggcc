@@ -19,7 +19,7 @@
         <div class="card">
             <img class="card-img-top" height="200" src="https://www.accenture.com/t00010101T000000w320/gb-en/_acnmedia/Accenture/Conversion-Assets/DotCom/Images/Global/Digital_15/Accenture-PE-icon-1-320.png" alt="Grupo Logo">
             <div class="card-block">
-                <h4 class="card-title">Enquete</h4>
+                <h4 class="card-title">@Model.Nome</h4>
                 <button type="button" class="open-modal btn btn-danger btn-block" data-path="/Enquete/Votar/@Model.EnqueteID">Votar</button>
                 <button type="button" class="open-modal btn btn-success btn-block" data-path="/Enquete/Detalhes/@Model.EnqueteID">Detalhes</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Enquete", new { id = @Model.EnqueteID })';">Editar</button>       

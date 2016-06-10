@@ -19,7 +19,7 @@
         <div class="card">
             <img class="card-img-top" height="200" src="http://macbook.nl/wp-content/themes/macbook/images/png/iphone318x180.png" alt="Grupo Logo">
             <div class="card-block">
-                <h4 class="card-title">Produto</h4>
+                <h4 class="card-title">@Model.Nome</h4>
                 <button type="button" class="open-modal btn btn-danger btn-block" data-path="/Produto/RequisitarProduto/@Model.ProdutoID">Requisitar Produto</button>
                 <button type="button" class="open-modal btn btn-success btn-block" data-path="/Produto/Detalhes/@Model.ProdutoID">Detalhes</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Produto", new { id = @Model.ProdutoID })';">Editar</button>

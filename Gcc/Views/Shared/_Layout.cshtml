@@ -1,61 +1,79 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Scripts.Render("~/bundles/jquery")        
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/bootstrap")        
-        @Scripts.Render("~/Scripts/modal.js")
-        @Scripts.Render("~/bundles/jqueryui");     
-        @Scripts.Render("~/Scripts/MeuJavaScript.js") 
-        @Styles.Render("~/Content/bootstrap.css")
-        @Styles.Render("~/Content/Site.css")
-        @Styles.Render("~/Content/themes/base/datepicker.css")
+<head>
+    <meta charset="utf-8" />
+    <title>SGGCC</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/modal.js")
+    @Scripts.Render("~/bundles/jqueryui");
+    @Scripts.Render("~/Scripts/MeuJavaScript.js")
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/Site.css")
+    @Styles.Render("~/Content/themes/base/datepicker.css")
 
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </div>
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        </form>
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Perfil", "Perfil", "Cliente")</li>
-                        <li>@Html.ActionLink("Visualizar Grupos", "Index", "Grupo")</li>
-                        <li>@Html.ActionLink("Meus Grupos", "Index", "Grupo")</li>
-                        <li>@Html.ActionLink("Criar Grupo", "Criar", "Grupo")</li>
-                        @Html.Partial("_LoginPartial")                                                
-                    </ul>
+    <meta property="fb:app_id" content="106534159747464" />
+    <meta property="og:url" content="http://sggcc.azurewebsites.net/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SGGCC" />
+    <meta property="og:description" content="Sistema de Gerenciamento de Grupos de Compras Coletivas" />
+    <meta property="og:image" content="http://downloadicons.net/sites/default/files/user-group-icon-80286.png" />
+
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.6&appId=106534159747464";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Perfil", "Perfil", "Cliente")</li>
+                    <li>@Html.ActionLink("Visualizar Grupos", "Index", "Grupo")</li>
+                    <li>@Html.ActionLink("Meus Grupos", "Index", "Grupo")</li>
+                    <li>@Html.ActionLink("Criar Grupo", "Criar", "Grupo")</li>
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <hr />
+    <div class="container">
+        @RenderSection("featured", required: false)
+        @RenderBody()
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    
                 </div>
             </div>
-        </nav>
-        <hr />
-        <div class="container">
-            @RenderSection("featured", required: false)
-            @RenderBody()
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                    </div>
-                </div>
-            </footer>
-         </div>
-            @RenderSection("scripts", required: false)
-    </body>
+        </footer>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
 </html>

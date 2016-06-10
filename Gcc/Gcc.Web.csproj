@@ -362,7 +362,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Grupo\Criar.cshtml" />
     <Content Include="Views\Grupo\Card.cshtml" />
