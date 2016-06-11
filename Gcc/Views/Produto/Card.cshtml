@@ -10,10 +10,13 @@
 @using (Html.BeginCollectionItem("Produtoes"))
 {
     @Html.HiddenFor(model => model.ProdutoID)
+    @Html.HiddenFor(model => model.UnidadeMedida)
+    @Html.HiddenFor(model => model.Nome)
+    @Html.HiddenFor(model => model.GrupoID)
 
     @*<div class="modal" id="modal">
 
-    </div>*@
+        </div>*@
 
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="card">
@@ -23,8 +26,11 @@
                 <button type="button" class="btn btn-danger btn-block" onclick="location.href='@Url.Action("RequisitarProduto", "Produto", new { id = @Model.ProdutoID })';">Requisitar Produto</button>
                 <button type="button" class="btn btn-success btn-block" onclick="location.href='@Url.Action("Detalhes", "Produto", new { id = @Model.ProdutoID })';">Detalhes</button>
                 @*<button type="button" class="open-modal btn btn-danger btn-block" data-path="/Produto/RequisitarProduto/@Model.ProdutoID">Requisitar Produto</button>
-                <button type="button" class="open-modal btn btn-success btn-block" data-path="/Produto/Detalhes/@Model.ProdutoID">Detalhes</button>*@
-                <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Produto", new { id = @Model.ProdutoID })';">Editar</button> 
+                    <button type="button" class="open-modal btn btn-success btn-block" data-path="/Produto/Detalhes/@Model.ProdutoID">Detalhes</button>*@
+                @if (Roles.IsUserInRole("EDITAR_GRUPO_" + @Model.GrupoID))
+                {
+                    <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Editar", "Produto", new { id = @Model.ProdutoID })';">Editar</button>
+                }
             </div>
         </div>
     </div>

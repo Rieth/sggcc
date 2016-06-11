@@ -9,6 +9,7 @@ using Gcc.Models;
 using Gcc.Data.DataLayerEntityFramework;
 using WebMatrix.WebData;
 using Gcc.Filters;
+using Gcc.Web.ViewsModel;
 
 namespace Gcc.Web.Controllers
 {
@@ -101,22 +102,7 @@ namespace Gcc.Web.Controllers
         }
 
         //aqui: criar classe
-        public class AlternativaViewModel
-        {
-            public Alternativa Alternativa { get; set; }
-            public bool Votada { get; set; }
 
-            public AlternativaViewModel()
-            {
-
-            }
-
-            public AlternativaViewModel(Alternativa alternativa, bool votada)
-            {
-                this.Alternativa = alternativa;
-                this.Votada = votada;
-            }
-        }
 
         [Authorize]
         public ActionResult Votar(long id = 0)

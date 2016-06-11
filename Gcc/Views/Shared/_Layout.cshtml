@@ -46,16 +46,17 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <form class="navbar-form navbar-left" role="search">
+                    @*<form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" placeholder="">
                         </div>
+                        <button type="submit" value="Buscar" class="btn btn-default" onclick="location.href='@Url.Action("Detalhes", "Grupo", new { textoBusca = @Model.TextoBusca })';"><span class="glyphicon glyphicon-search"></span></button>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </form>
+                    </form>*@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Perfil", "Perfil", "Cliente")</li>
                     <li>@Html.ActionLink("Visualizar Grupos", "Index", "Grupo")</li>
-                    <li>@Html.ActionLink("Meus Grupos", "Index", "Grupo")</li>
+                    <li>@Html.ActionLink("Meus Grupos", "MeusGrupos", "Grupo")</li>
                     <li>@Html.ActionLink("Criar Grupo", "Criar", "Grupo")</li>
                     @Html.Partial("_LoginPartial")
                 </ul>

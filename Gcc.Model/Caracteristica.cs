@@ -17,11 +17,14 @@ namespace Gcc.Models
     {
         public long CaracteristicaID { get; set; }
         public Nullable<long> ProdutoID { get; set; }
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+
+        [Required(ErrorMessage = "Nome da Característica é um campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+
+        [Required(ErrorMessage = "Valor da Característica é um campo de preenchimento obrigatório.")]
         public string Valor { get; set; }
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+
+        [Required(ErrorMessage = "Unidade de Medida da Característica é um campo de preenchimento obrigatório.")]
         public string UnidadeMedida { get; set; }
 
         public virtual Produto Produto { get; set; }

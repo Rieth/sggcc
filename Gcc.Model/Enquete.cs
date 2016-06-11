@@ -23,7 +23,7 @@ namespace Gcc.Models
 
         public long EnqueteID { get; set; }
         public Nullable<long> GrupoID { get; set; }
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+        [Required(ErrorMessage = "Nome da Enquete é um campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
         public string Descricao { get; set; }
 

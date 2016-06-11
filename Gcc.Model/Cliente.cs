@@ -25,7 +25,7 @@ namespace Gcc.Models
         public long ClienteID { get; set; }
         public Nullable<long> EnderecoID { get; set; }
         public Nullable<long> UserId { get; set; }
-        [Required(ErrorMessage="Campo de preenchimento obrigatório.")]
+        [Required(ErrorMessage="Nome é um campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
         public string Telefone { get; set; }
         public string Celular { get; set; }

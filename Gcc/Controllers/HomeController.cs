@@ -1,4 +1,5 @@
 ﻿using Gcc.Filters;
+using Gcc.Web.ViewsModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,7 @@ namespace Gcc.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
-            return View();
+            return View(new BuscaViewModel());
         }
 
         public ActionResult About()

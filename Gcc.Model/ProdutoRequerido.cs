@@ -20,7 +20,7 @@ namespace Gcc.Models
         public Nullable<long> ProdutoID { get; set; }
         public Nullable<long> ClienteID { get; set; }
         public Nullable<long> GrupoID { get; set; }
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+        [Required(ErrorMessage = "Quantidade é um campo de preenchimento obrigatório.")]
         public int Quantidade { get; set; }
     
         public virtual Cliente Cliente { get; set; }

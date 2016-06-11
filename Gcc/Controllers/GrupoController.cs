@@ -10,6 +10,7 @@ using Gcc.Data.DataLayerEntityFramework;
 using System.Web.Security;
 using Gcc.Filters;
 using WebMatrix.WebData;
+using Gcc.Web.ViewsModel;
 
 namespace Gcc.Web.Controllers
 {
@@ -31,9 +32,31 @@ namespace Gcc.Web.Controllers
 
         public ActionResult Index()
         {
-            List<Grupo> grupos = db.Grupoes.ToList();
+           List<Grupo> grupos = db.Grupoes.ToList();
 
             return View(grupos);
+        }
+
+        [Authorize]
+        public ActionResult MeusGrupos()
+        {
+            Cliente cliente = db.Clientes.Where(c => c.UserId == WebSecurity.CurrentUserId).FirstOrDefault();
+            List<ParticipanteGrupo> minhasParticipacoes = db.ParticipanteGrupoes.Where(p => p.ClienteID == cliente.ClienteID).ToList();
+
+            List<Grupo> neusGrupos = minhasParticipacoes.Select(mp => mp.Grupo).ToList();
+
+            return View("../Grupo/Index", neusGrupos);
+        }
+
+        public ActionResult Buscar(BuscaViewModel busca)
+        {
+            List<Produto> produtos = db.Produtoes.Where(p => p.Nome == busca.TextoBusca).ToList();
+            List<Grupo> grupos = produtos.Select(p => p.Grupo).ToList();
+
+            if (grupos != null && grupos.Count > 0)
+                return View(grupos);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
@@ -102,12 +125,13 @@ namespace Gcc.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Editar(Grupo grupo)
         {
+            //grupo.Produtoes = null;
+            //grupo.Enquetes = null;
+
             try
             {
                 if (ModelState.IsValid)
                 {
-                    grupo.Produtoes = null;
-                    grupo.Enquetes = null;
 
                     db.Entry(grupo.Endereco).State = EntityState.Modified;
                     db.Entry(grupo).State = EntityState.Modified;
@@ -129,13 +153,19 @@ namespace Gcc.Web.Controllers
         {
             Cliente cliente = db.Clientes.Where(c => c.UserId == WebSecurity.CurrentUserId).FirstOrDefault();
 
-            ParticipanteGrupo participante = new ParticipanteGrupo();
-            participante.GrupoID = grupo.GrupoID;
-            participante.ClienteID = cliente.ClienteID;
-            db.ParticipanteGrupoes.Add(participante);
+            ParticipanteGrupo participante = db.ParticipanteGrupoes.Where(pg => pg.GrupoID == grupo.GrupoID && pg.ClienteID == cliente.ClienteID).FirstOrDefault();
 
-            db.SaveChanges();
-            //aqui
+            if (participante == null)
+            {
+                participante = new ParticipanteGrupo();
+
+                participante.GrupoID = grupo.GrupoID;
+                participante.ClienteID = cliente.ClienteID;
+                db.ParticipanteGrupoes.Add(participante);
+
+                db.SaveChanges();    
+            }
+
             return View("Detalhes", grupo);
         }
 

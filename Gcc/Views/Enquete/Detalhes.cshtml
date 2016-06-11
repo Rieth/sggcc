@@ -14,27 +14,24 @@
         <div class="modal-body">*@
 <div class="container">
     <div class="form-group top15 col-lg-6 col-md-6 col-xs-12">
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nome)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Nome, new { @class = "form-control" })
+        <div class="form-group">
+            <b>@Html.DisplayNameFor(model => model.Nome): </b>
+            @Html.DisplayFor(model => model.Nome)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Descricao)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Descricao, new { @class = "form-control" })
+        <div class="form-group">
+            <b>@Html.DisplayNameFor(model => model.Descricao): </b>
+            @Html.DisplayFor(model => model.Descricao)
         </div>
 
-        <div class="editor-label">
-            <h3>Total de votos</h3>
+        <div class="form-group">
+            <h3>Total de votos </h3>
         </div>
         @foreach (var a in Model.Alternativas)
         {
-            <div class="editor-label">
-                <label>@a.Valor: </label> @a.Votoes.Count()@*aqui: criar viewmodel*@
+            <div class="form-group">
+                <b>@a.Valor: </b>
+                @a.Votoes.Count() @*aqui: criar viewmodel*@
             </div>
         }
 

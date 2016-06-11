@@ -25,8 +25,10 @@ namespace Gcc.Models
 
         public long GrupoID { get; set; }
         public Nullable<long> EnderecoID { get; set; }
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+
+        [Required(ErrorMessage = "Nome do Grupo é um campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
+
         public string Descricao { get; set; }
         public Nullable<int> QuantidadeTotal { get; set; }
         public string Email { get; set; }

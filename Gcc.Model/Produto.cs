@@ -23,11 +23,11 @@ namespace Gcc.Models
 
         public long ProdutoID { get; set; }
         public Nullable<long> GrupoID { get; set; }
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+        [Required(ErrorMessage = "Nome do Produto é um campo de preenchimento obrigatório.")]
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public string Link { get; set; }
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório.")]
+        [Required(ErrorMessage = "Unidade de Medida é um campo de preenchimento obrigatório.")]
         public string UnidadeMedida { get; set; }
 
         public virtual ICollection<Caracteristica> Caracteristicas { get; set; }
