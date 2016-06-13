@@ -163,7 +163,7 @@ namespace Gcc.Web.Controllers
                 
                 db.SaveChanges();
 
-                return View("../Home/Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(alternativasVM);
