@@ -27,10 +27,10 @@ namespace Gcc.Web.Controllers
             if (alternativa != null)
             {
                 db.Alternativas.Remove(alternativa);
-                db.SaveChanges();
+                //db.SaveChanges();
             }
 
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK, "Deletada");
 
         }
 

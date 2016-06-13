@@ -94,13 +94,16 @@ namespace Gcc.Web.Controllers
                 participante.GrupoID = grupo.GrupoID;
                 participante.ClienteID = cliente.ClienteID;
 
+                db.ParticipanteGrupoes.Add(participante);
+
                 db.SaveChanges();
 
                 string permissaoEditar = "EDITAR_GRUPO_" + grupo.GrupoID;
                 Roles.CreateRole(permissaoEditar);
                 Roles.AddUserToRole(User.Identity.Name, permissaoEditar);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Editar", "Grupo", new { id = grupo.GrupoID });
+                //return RedirectToAction("Index");
             }
 
             return View(grupo);
@@ -166,7 +169,7 @@ namespace Gcc.Web.Controllers
                 db.SaveChanges();    
             }
 
-            return View("Detalhes", grupo);
+            return RedirectToAction("Detalhes", "Grupo", new { id = grupo.GrupoID });
         }
 
         //

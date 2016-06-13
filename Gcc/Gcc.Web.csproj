@@ -396,6 +396,7 @@
     <Content Include="Views\Participante\Card.cshtml" />
     <Content Include="Views\Enquete\Detalhes.cshtml" />
     <Content Include="Views\Participante\Detalhes.cshtml" />
+    <Content Include="Views\Grupo\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
